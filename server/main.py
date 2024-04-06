@@ -3,7 +3,7 @@ from fastapi.responses import StreamingResponse
 import fastapi as _fapi
 
 import schemas as _schemas
-# import services as _services
+import services as _services
 import io
 
 app = FastAPI()
@@ -16,12 +16,12 @@ def read_root():
 async def root():
     return {"message": "Welcome to the Demo of StableDiffusers with FastAPI"}
 
-# @app.get("/api/generate/")
-# async def generate_image(imgPromptCreate: _schemas.ImageCreate = _fapi.Depends()):
+@app.get("/api/generate/")
+async def generate_image(imgPromptCreate: _schemas.ImageCreate = _fapi.Depends()):
     
-#     image = await _services.generate_image(imgPrompt=imgPromptCreate)
+    image = await _services.generate_image(imgPrompt=imgPromptCreate)
 
-#     memory_stream = io.BytesIO()
-#     image.save(memory_stream, format="PNG")
-#     memory_stream.seek(0)
-#     return StreamingResponse(memory_stream, media_type="image/png")
+    memory_stream = io.BytesIO()
+    image.save(memory_stream, format="PNG")
+    memory_stream.seek(0)
+    return StreamingResponse(memory_stream, media_type="image/png")

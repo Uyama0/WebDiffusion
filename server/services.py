@@ -7,9 +7,14 @@ from PIL.Image import Image
 import os
 from dotenv import load_dotenv
 
+from io import BytesIO
+import base64 
+
 load_dotenv()
 
 HF_TOKEN = os.getenv('HF_TOKEN')
+
+device = "cuda"
 
 pipe = StableDiffusionPipeline.from_pretrained(
     "CompVis/stable-diffusion-v1-4", 
@@ -18,21 +23,18 @@ pipe = StableDiffusionPipeline.from_pretrained(
     use_auth_token=HF_TOKEN
     )
 
-if torch.backends.mps.is_available():
-    device = "mps"
-else: 
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-
 pipe.to(device)
 
 
 async def generate_image(imgPrompt: _schemas.ImageCreate) -> Image: 
-    generator = None if imgPrompt.seed is None else torch.Generator().manual_seed(int(imgPrompt.seed))
-
     image: Image = pipe(imgPrompt.prompt,
                         guidance_scale=imgPrompt.guidance_scale, 
                         num_inference_steps=imgPrompt.num_inference_steps, 
-                        generator = generator, 
                     ).images[0]
-    
+
+    image.save("testimage.png")
+    buffer = BytesIO()
+    image.save(buffer, format="PNG")
+    imgstr = base64.b64encode(buffer.getvalue())
+
     return image

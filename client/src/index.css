@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "Golos Text", sans-serif;
+  letter-spacing: 0rem;
+  line-height: 1.1;
+  outline: 1px solid red;
+}

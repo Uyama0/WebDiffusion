@@ -67,42 +67,41 @@ async def imageFromScatch(ScratchPrompt: _schemas.ScratchCreate, content) -> Ima
 
     # ScratchPrompt.alwayson_scripts = always_on_args
 
-    # payload = {
-    #     "prompt": "Black and crimson red dragon with large wings, reign of fire, lord of the rings dragon scary",
-    #     "sampler_name": "DPM++ 2M Karras",
-    #     "batch_size": 1,
-    #     "steps": 5,
-    #     "cfg_scale": 9,
-    #     "width": width,
-    #     "height": height,
-    #     "negative_prompt": "nsfw, blurry, low quality, worst quality, normal quality, lowres, monochrome",
-    #     "alwayson_scripts": {
-    #         "controlnet": {
-    #             "args": [
-    #                 {
-    #                     "input_image": controlnet_image_data,
-    #                     "enabled": True,
-    #                     "module": "canny",
-    #                     "model": 'control_canny-fp16 [e3fe7712]',
-    #                     "control_mode": "ControlNet is more important",
-    #                     "weight": 1,
-    #                 },
-    #                 {
-    #                     "input_image": controlnet_image_data,
-    #                     "enabled": False,
-    #                     "module": "lineart_standard (from white bg & black line)",
-    #                     "model": 'control_v11p_sd15_lineart [43d4be0d]',
-    #                     "control_mode": "Balanced",
-    #                     "weight": 0.3,
-    #                 }
-    #             ]
-    #         }
-    #     }
-    # }   
+    payload = {
+        "prompt": "Black and crimson red dragon with large wings, reign of fire, lord of the rings dragon scary",
+        "batch_size": 1,
+        "steps": 1,
+        "cfg_scale": 4,
+        "width": width,
+        "height": height,
+        "negative_prompt": "nsfw, blurry, low quality, worst quality, normal quality, lowres, monochrome",
+        "alwayson_scripts": {
+            "controlnet": {
+        #         "args": [
+        #             {
+        #                 "input_image": controlnet_image_data,
+        #                 "enabled": True,
+        #                 "module": "canny",
+        #                 "model": 'control_canny-fp16 [e3fe7712]',
+        #                 "control_mode": "ControlNet is more important",
+        #                 "weight": 1,
+        #             },
+        #             {
+        #                 "input_image": controlnet_image_data,
+        #                 "enabled": False,
+        #                 "module": "lineart_standard (from white bg & black line)",
+        #                 "model": 'control_v11p_sd15_lineart [43d4be0d]',
+        #                 "control_mode": "Balanced",
+        #                 "weight": 0.3,
+        #             }
+        #         ]
+            }
+        }
+    }   
 
 
     try:
-        response = requests.post(url=f'{url}/sdapi/v1/txt2img', json=payload)
+        response = requests.post(url=f'{url}/sdapi/v1/img2img', json=payload)
         response.raise_for_status()
     except requests.exceptions.RequestException as e:
         raise HTTPException(status_code=500, detail=str(e))

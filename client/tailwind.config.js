@@ -7,13 +7,13 @@ export default {
         golos: ["Golos Text", "sans-serif"],
       },
       borderRadius: {
-        "base-border-radius": "16px",
+        "base-border-radius": "12px",
       },
       margin: {
-        "base-margin": "20px",
+        "base-margin": "12px",
       },
       padding: {
-        "base-padding": "20px",
+        "base-padding": "12px",
       },
     },
   },

@@ -13,7 +13,7 @@ const InputField: React.FC<InputFieldProps> = ({
         rows={2}
         required={required}
         placeholder={placeholder}
-        className="border border-black w-full rounded-base-border-radius p-3 resize-none"
+        className="border border-black w-full rounded-base-border-radius p-base-padding resize-none"
       />
     </>
   );

@@ -6,11 +6,9 @@ const Layout = () => {
   return (
     <div className="m-base-margin">
       <Header />
-      <main className="flex flex-col gap-5">
+      <main className="border flex flex-col gap-3 border-black rounded-base-border-radius p-base-padding">
         <PromptEntry />
-        <section className="border border-black rounded-base-border-radius p-base-padding">
-          <Router />
-        </section>
+        <Router />
       </main>
     </div>
   );

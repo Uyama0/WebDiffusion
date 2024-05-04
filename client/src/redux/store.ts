@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import scratchToImageSlice from "./slices/scratchToImageSlice";
+import imageKeeperSlice from "./slices/imageKeeperSlice";
 
 const store = configureStore({
   reducer: {
     settings: scratchToImageSlice,
+    images: imageKeeperSlice,
   },
 });
 

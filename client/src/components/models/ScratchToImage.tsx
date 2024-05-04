@@ -1,12 +1,11 @@
 import ImageViewer from "../ImageViewer/ImageViewer";
+import ImageUpload from "../imageUpload/ImageUpload";
 
 const ScratchToImage: React.FC = () => {
   return (
-    <div className="flex">
-      <div className="basis-3/5"></div>
-      <div className="flex-1">
-        <ImageViewer />
-      </div>
+    <div className="flex justify-between h-1/3">
+      <ImageUpload />
+      <ImageViewer />
     </div>
   );
 };

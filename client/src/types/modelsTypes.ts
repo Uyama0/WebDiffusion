@@ -6,4 +6,5 @@ export interface BaseModelTypes {
   cfg_scale: number;
   width: number;
   height: number;
+  image: string;
 }

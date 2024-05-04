@@ -1,16 +1,33 @@
 from fastapi import FastAPI, UploadFile, File
 import fastapi as _fapi
 from fastapi.responses import StreamingResponse
+from starlette.middleware.cors import CORSMiddleware
 
 import schemas as _schemas
 import services as _services
 
 import io
 
+from pydantic import BaseModel
+from typing import Dict
+
 app = FastAPI()
 
-@app.get("/textToImg")
-async def root(ImagePromptCreate: _schemas.ImageCreate = _fapi.Depends()):
+@app.get("/")
+def read_root():
+    print("heelo")
+    return {"message": "Welcome to Stable Diffussers API"}
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "OPTIONS"],  
+    allow_headers=["*"],
+)
+
+@app.post("/textToImg")
+async def root(ImagePromptCreate: _schemas._PromptBase):
     image = await _services.generateImage(ImagePrompt = ImagePromptCreate)
 
     memory_stream = io.BytesIO()
@@ -22,10 +39,8 @@ async def root(ImagePromptCreate: _schemas.ImageCreate = _fapi.Depends()):
     return StreamingResponse(memory_stream, media_type="image/png")
 
 @app.post("/scratchToImg")
-async def root(scratchPromptCreate: _schemas.ScratchCreate = _fapi.Depends(), file: UploadFile = File(...)):
-    content = await file.read()
-
-    image = await _services.imageFromScatch(ScratchPrompt = scratchPromptCreate, content=content)
+async def generate_image(scratchPromptCreate: _schemas.ScratchBase):
+    image = await _services.imageFromScatch(ScratchPrompt = scratchPromptCreate)
 
     memory_stream = io.BytesIO()
 

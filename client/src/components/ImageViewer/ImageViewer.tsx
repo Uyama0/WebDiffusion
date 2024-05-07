@@ -12,7 +12,11 @@ const ImageViewer = () => {
   return (
     <section className="border rounded-base-border-radius border-black p-base-padding flex justify-center items-center w-[33vw] h-[45vh]">
       {image ? (
-        <img src={image} alt="altimg" className="w-full h-full object-cover" />
+        <img
+          src={image}
+          alt="altimg"
+          className="w-full h-full object-contain rounded-base-border-radius"
+        />
       ) : (
         <p>no image...</p>
       )}

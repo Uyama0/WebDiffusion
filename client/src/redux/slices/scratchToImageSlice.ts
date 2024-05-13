@@ -8,11 +8,11 @@ type UpdateFieldPayload<T> = {
 };
 
 const initialState: BaseModelTypes = {
-  prompt: "fire",
-  negative_prompt: "ugly",
-  steps: 5,
+  prompt: "",
+  negative_prompt: "",
+  steps: 20,
   batch_size: 1,
-  cfg_scale: 5,
+  cfg_scale: 12,
   width: 520,
   height: 520,
   image: "",

@@ -5,7 +5,7 @@ import schemas as _schemas
 import requests
 import io
 import base64
-from PIL import Image, PngImagePlugin
+from PIL import Image
 
 url = "http://127.0.0.1:7860"
 
@@ -34,36 +34,25 @@ async def generateImage(ImagePrompt: _schemas._PromptBase) -> Image:
     return image
 
 async def imageFromScatch(ScratchPrompt: _schemas.ScratchBase) -> Image:
-    # scratch = Image.open(io.BytesIO(content))
-    # width, height = scratch.size
+    payload = ScratchPrompt.model_dump()
 
-    # controlnet_image_data = encode_pil_to_base64(scratch)
-    # controlnet_image_data = content
-
-    payload = ScratchPrompt.dict()
+    del payload["image"]
 
     payload["alwayson_scripts"] = {
-    "controlnet": {
-        "args": [
-            {
-                "input_image": ScratchPrompt.image,
-                "enabled": True,
-                "module": "canny",
-                "model": "control_canny-fp16 [e3fe7712]",
-                "control_mode": "ControlNet is more important",
-                "weight": 1,
-            },
-            {
-                "input_image": ScratchPrompt.image,
-                "enabled": False,
-                "module": "lineart_standard (from white bg & black line)",
-                "model": "control_v11p_sd15_lineart [43d4be0d]",
-                "control_mode": "Balanced",
-                "weight": 0.3,
-            }
-        ]
+        "controlnet": {
+            "args": [
+                {
+                    "input_image": ScratchPrompt.image,
+                    "enabled": True,
+                    "module": "canny",
+                    "model": "control_v11p_sd15_lineart [43d4be0d]",
+                    "control_mode": "Balanced",
+                    "weight": 1,
+                    "pixel_perfect": True,
+                }
+            ]
+        }
     }
-}
 
     try:
         response = requests.post(url=f'{url}/sdapi/v1/txt2img', json=payload)

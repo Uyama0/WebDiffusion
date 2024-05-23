@@ -10,6 +10,7 @@ class _PromptBase(_pydantic.BaseModel):
     width: int
     height: int
     auto: bool
+    steps: str
 
 
 class ScratchBase(_PromptBase):

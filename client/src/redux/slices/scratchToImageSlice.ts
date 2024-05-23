@@ -18,6 +18,7 @@ const initialState: BaseModelTypes = {
   height: 512,
   image: "",
   auto: false,
+  sampler_index: "",
 };
 
 export const scratchToImageSlice = createSlice({

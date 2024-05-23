@@ -9,4 +9,5 @@ export interface BaseModelTypes {
   height: number;
   image: string;
   auto: boolean;
+  sampler_index: string;
 }

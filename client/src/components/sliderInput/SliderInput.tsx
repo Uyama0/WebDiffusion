@@ -41,7 +41,7 @@ const SliderInput: FC<TSliderInput> = ({
         defaultValue={[defaultValue]}
         max={max}
         step={step}
-        onValueChange={(value) => handleSliderValueChange(value)}
+        onValueChange={handleSliderValueChange}
       />
     </div>
   );

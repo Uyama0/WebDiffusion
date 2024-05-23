@@ -24,12 +24,14 @@ const SelectInput: FC<TSelectInput> = ({ label, data, fieldName }) => {
   const dispatch = useAppDispatch();
 
   const handleSelectValue = (value: string) => {
+    console.log(value);
+
     dispatch(setFieldValue({ field: fieldName, value: value }));
   };
 
   return (
     <div className="py-md">
-      <Select onValueChange={(value) => handleSelectValue(value)}>
+      <Select onValueChange={handleSelectValue}>
         <SelectTrigger>
           <SelectValue placeholder={label} />
         </SelectTrigger>

@@ -23,8 +23,10 @@ const SelectInput: FC<TSelectInput> = ({ label, data }) => {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {data.map((dataItem) => (
-              <SelectItem value={dataItem}>{dataItem}</SelectItem>
+            {data.map((dataItem, index) => (
+              <SelectItem key={index} value={dataItem}>
+                {dataItem}
+              </SelectItem>
             ))}
           </SelectGroup>
         </SelectContent>

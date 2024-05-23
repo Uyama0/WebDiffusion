@@ -3,6 +3,7 @@ export interface BaseModelTypes {
   negative_prompt: string;
   steps: number;
   batch_size: number;
+  batch_count: number;
   cfg_scale: number;
   width: number;
   height: number;

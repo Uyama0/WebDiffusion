@@ -5,14 +5,9 @@ import { setKeepImage } from "../redux/slices/imageKeeperSlice";
 import { useAppSelector } from "../types/reduxHooks";
 import { useAppDispatch } from "../types/reduxHooks";
 
-interface ErrorResponse {
-  message: string;
-  code: number;
-}
-
 const useImageGenerate = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<ErrorResponse | null>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   const dispatch = useAppDispatch();
   const settings = useAppSelector((data) => data.settings);
@@ -34,8 +29,8 @@ const useImageGenerate = () => {
       const imageBlob = await response.blob();
       const imageObjectURL = URL.createObjectURL(imageBlob);
       dispatch(setKeepImage(imageObjectURL));
-    } catch (error: any) {
-      setError(error);
+    } catch (error) {
+      setError(error as Error);
     }
     setIsLoading(false);
   };

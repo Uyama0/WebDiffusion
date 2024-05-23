@@ -1,0 +1,4 @@
+{
+  "label": "Sampling method",
+  "data": ["Euler a", "DPM++ 2M Karras", "DPM++ SDE Karras"]
+}

@@ -9,6 +9,7 @@ class _PromptBase(_pydantic.BaseModel):
     cfg_scale: int
     width: int
     height: int
+    auto: bool
 
 
 class ScratchBase(_PromptBase):

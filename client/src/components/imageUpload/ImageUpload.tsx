@@ -1,6 +1,5 @@
 import { setFieldValue } from "../../redux/slices/scratchToImageSlice";
 import { useAppDispatch } from "../../types/reduxHooks";
-// import { setImage } from "../../redux/slices/scratchToImageSlice";
 
 const ImageUpload: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -18,7 +17,7 @@ const ImageUpload: React.FC = () => {
   };
 
   return (
-    <section className="border rounded-base-border-radius border-black p-base-padding flex justify-center items-center w-[33vw] h-[45vh]">
+    <section className="border rounded-md border-black flex justify-center items-center h-[50vh]">
       <input type="file" onChange={handleImageChange} accept="image/*" />
     </section>
   );

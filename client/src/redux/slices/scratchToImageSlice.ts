@@ -12,9 +12,10 @@ const initialState: BaseModelTypes = {
   negative_prompt: "",
   steps: 20,
   batch_size: 1,
+  batch_count: 1,
   cfg_scale: 12,
-  width: 520,
-  height: 520,
+  width: 512,
+  height: 512,
   image: "",
   auto: false,
 };

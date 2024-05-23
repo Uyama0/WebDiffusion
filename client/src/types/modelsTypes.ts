@@ -7,4 +7,5 @@ export interface BaseModelTypes {
   width: number;
   height: number;
   image: string;
+  auto: boolean;
 }

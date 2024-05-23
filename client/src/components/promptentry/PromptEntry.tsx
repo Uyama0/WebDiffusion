@@ -1,23 +1,18 @@
 import InputField from "../inputField/InputField";
-import Button from "../ui/Button";
+import ButtonSelf from "../ui/ButtonSelf";
 
 const PromptEntry: React.FC = () => {
   return (
-    <div className="flex gap-3">
-      <section className="w-2/3 flex flex-col gap-3">
-        <InputField
-          placeholder="Your prompt here..."
-          required={true}
-          fieldName="prompt"
-        />
+    <div className="flex gap-md ">
+      <section className="w-2/3 flex flex-col gap-md">
+        <InputField placeholder="Your prompt here..." fieldName="prompt" />
         <InputField
           placeholder="Your negative prompt here..."
-          required={true}
           fieldName="negative_prompt"
         />
       </section>
       <section className="w-1/3">
-        <Button>Generate</Button>
+        <ButtonSelf>Generate</ButtonSelf>
       </section>
     </div>
   );

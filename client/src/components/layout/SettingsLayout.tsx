@@ -12,6 +12,7 @@ const SettingsLayout: FC = () => {
         <SelectInput
           label={samplingMethods.label}
           data={samplingMethods.data}
+          fieldName="steps"
         />
       </div>
       <div className="col-span-2">

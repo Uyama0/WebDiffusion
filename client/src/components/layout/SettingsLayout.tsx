@@ -3,57 +3,86 @@ import { FC } from "react";
 import SliderInput from "../sliderInput/SliderInput";
 import SelectInput from "../selectInput/SelectInput";
 
-import samplingMethods from "../../../public/data/samplingMethods.json";
+import { TSelectInput } from "@/types/componentTypes";
+import { TSliderInput } from "@/types/componentTypes";
+
+import samplingMethods from "@/assets/data/samplingMethods.json";
+
+type TLayoutConfigs = {
+  component: FC<any>;
+  props: TSelectInput | TSliderInput;
+  colSpan: number;
+};
+
+const layoutConfigs: TLayoutConfigs[] = [
+  {
+    component: SelectInput,
+    props: {
+      label: samplingMethods.label,
+      data: samplingMethods.data,
+      fieldName: "sampler_index",
+    },
+    colSpan: 2,
+  },
+  {
+    component: SliderInput,
+    props: {
+      fieldName: "steps",
+      fieldLabel: "Sampling steps",
+      defaultValue: 20,
+      max: 150,
+    },
+    colSpan: 2,
+  },
+  {
+    component: SliderInput,
+    props: {
+      fieldName: "width",
+      fieldLabel: "Width",
+      defaultValue: 512,
+      max: 2048,
+    },
+    colSpan: 3,
+  },
+  {
+    component: SliderInput,
+    props: {
+      fieldName: "batch_count",
+      fieldLabel: "Batch count",
+      defaultValue: 1,
+    },
+    colSpan: 1,
+  },
+  {
+    component: SliderInput,
+    props: {
+      fieldName: "height",
+      fieldLabel: "Height",
+      defaultValue: 512,
+      max: 2048,
+    },
+    colSpan: 3,
+  },
+  {
+    component: SliderInput,
+    props: {
+      fieldName: "batch_size",
+      fieldLabel: "Batch size",
+      defaultValue: 1,
+      max: 100,
+    },
+    colSpan: 1,
+  },
+];
 
 const SettingsLayout: FC = () => {
   return (
     <div className="grid grid-cols-4 gap-sm">
-      <div className="col-span-2">
-        <SelectInput
-          label={samplingMethods.label}
-          data={samplingMethods.data}
-          fieldName="sampler_index"
-        />
-      </div>
-      <div className="col-span-2">
-        <SliderInput
-          fieldName="steps"
-          field_label="Sampling steps"
-          defaultValue={20}
-          max={150}
-        />
-      </div>
-      <div className="col-span-3">
-        <SliderInput
-          fieldName="width"
-          field_label="Width"
-          defaultValue={512}
-          max={2048}
-        />
-      </div>
-      <div className="col-span-1">
-        <SliderInput
-          fieldName="batch_count"
-          field_label="Batch count"
-          defaultValue={1}
-        />
-      </div>
-      <div className="col-span-3">
-        <SliderInput
-          fieldName="height"
-          field_label="Height"
-          defaultValue={512}
-          max={2048}
-        />
-      </div>
-      <div className="col-span-1">
-        <SliderInput
-          fieldName="batch_size"
-          field_label="Batch size"
-          defaultValue={1}
-          max={100}
-        />
-      </div>
+      {layoutConfigs.map(({ component: Component, props, colSpan }, index) => (
+        <div key={index} className={`col-span-${colSpan}`}>
+          <Component {...props} />
+        </div>
+      ))}
     </div>
   );
 };

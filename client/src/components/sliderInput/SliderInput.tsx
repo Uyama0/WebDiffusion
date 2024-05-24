@@ -6,19 +6,11 @@ import { setFieldValue } from "@/redux/slices/scratchToImageSlice";
 
 import { useAppDispatch } from "@/types/reduxHooks";
 import { useAppSelector } from "@/types/reduxHooks";
-import { BaseModelTypes } from "@/types/modelsTypes";
-
-interface TSliderInput {
-  fieldName: keyof BaseModelTypes;
-  field_label: string;
-  defaultValue?: number;
-  step?: number;
-  max?: number;
-}
+import { TSliderInput } from "@/types/componentTypes";
 
 const SliderInput: FC<TSliderInput> = ({
   fieldName,
-  field_label,
+  fieldLabel,
   defaultValue = 1,
   step = 1,
   max = 100,
@@ -34,7 +26,7 @@ const SliderInput: FC<TSliderInput> = ({
   return (
     <div className="py-md flex flex-col gap-sm">
       <div className="flex justify-between items-center">
-        <Label>{field_label}:</Label>
+        <Label>{fieldLabel}:</Label>
         <Label>{fieldStateValue}</Label>
       </div>
       <Slider

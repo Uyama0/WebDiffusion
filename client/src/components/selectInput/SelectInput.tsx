@@ -3,7 +3,7 @@ import { FC } from "react";
 import { setFieldValue } from "@/redux/slices/scratchToImageSlice";
 
 import { useAppDispatch } from "@/types/reduxHooks";
-import { BaseModelTypes } from "@/types/modelsTypes";
+import { TSelectInput } from "@/types/componentTypes";
 
 import {
   Select,
@@ -14,18 +14,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-type TSelectInput = {
-  label: string;
-  data: string[];
-  fieldName: keyof BaseModelTypes;
-};
-
 const SelectInput: FC<TSelectInput> = ({ label, data, fieldName }) => {
   const dispatch = useAppDispatch();
 
   const handleSelectValue = (value: string) => {
-    console.log(value);
-
     dispatch(setFieldValue({ field: fieldName, value: value }));
   };
 

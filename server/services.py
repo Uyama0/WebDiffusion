@@ -37,6 +37,7 @@ async def imageFromScatch(ScratchPrompt: _schemas.ScratchBase) -> Image:
     payload = ScratchPrompt.model_dump()
 
     del payload["image"]
+    del payload["auto"]
 
     payload["alwayson_scripts"] = {
         "controlnet": {

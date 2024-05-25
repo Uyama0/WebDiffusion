@@ -1,8 +1,13 @@
-import { setFieldValue } from "../../redux/slices/scratchToImageSlice";
-import { useAppDispatch } from "../../types/reduxHooks";
+import { Input } from "@/components/ui/input";
+import { Label } from "../ui/label";
+
+import { setFieldValue } from "@/redux/slices/scratchToImageSlice";
+import { useAppDispatch } from "@/types/reduxHooks";
+import { useAppSelector } from "@/types/reduxHooks";
 
 const ImageUpload: React.FC = () => {
   const dispatch = useAppDispatch();
+  const image = useAppSelector((data) => data.settings.image);
 
   const handleImageChange = (event: any) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -17,8 +22,21 @@ const ImageUpload: React.FC = () => {
   };
 
   return (
-    <section className="border rounded-md border-black flex justify-center items-center h-[50vh]">
-      <input type="file" onChange={handleImageChange} accept="image/*" />
+    <section className="border relative rounded-md flex justify-center items-center h-[50vh]">
+      <Input
+        id="picture"
+        type="file"
+        onChange={handleImageChange}
+        className="absolute inset-0 h-full opacity-0 cursor-pointer"
+      />
+      <Label className="-z-20">Chose your image</Label>
+      {image && (
+        <img
+          src={image}
+          alt="Uploaded"
+          className="absolute inset-0 object-contain h-full w-full -z-10"
+        />
+      )}
     </section>
   );
 };

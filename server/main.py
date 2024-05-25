@@ -40,6 +40,7 @@ async def root(ImagePromptCreate: _schemas._PromptBase):
 
 @app.post("/scratchToImg")
 async def generate_image(scratchPromptCreate: _schemas.ScratchBase):
+    print("work")
     image = await _services.imageFromScatch(ScratchPrompt = scratchPromptCreate)
 
     memory_stream = io.BytesIO()

@@ -3,16 +3,10 @@ import { FC } from "react";
 import SliderInput from "../sliderInput/SliderInput";
 import SelectInput from "../selectInput/SelectInput";
 
-import { TSelectInput } from "@/types/componentTypes";
-import { TSliderInput } from "@/types/componentTypes";
+import { TColSpan } from "@/types/componentTypes";
+import { TLayoutConfigs } from "@/types/componentTypes";
 
 import samplingMethods from "@/assets/data/samplingMethods.json";
-
-type TLayoutConfigs = {
-  component: FC<any>;
-  props: TSelectInput | TSliderInput;
-  colSpan: number;
-};
 
 const layoutConfigs: TLayoutConfigs[] = [
   {
@@ -73,16 +67,39 @@ const layoutConfigs: TLayoutConfigs[] = [
     },
     colSpan: 1,
   },
+  {
+    component: SliderInput,
+    props: {
+      fieldName: "cfg_scale",
+      fieldLabel: "CFG scale",
+      defaultValue: 7,
+      max: 30,
+      step: 0.5,
+    },
+    colSpan: 4,
+  },
 ];
+
+const colSpanVariants: { [key in TColSpan]: string } = {
+  1: "col-span-1",
+  2: "col-span-2",
+  3: "col-span-3",
+  4: "col-span-4",
+};
 
 const SettingsLayout: FC = () => {
   return (
     <div className="grid grid-cols-4 gap-sm">
-      {layoutConfigs.map(({ component: Component, props, colSpan }, index) => (
-        <div key={index} className={`col-span-${colSpan}`}>
-          <Component {...props} />
-        </div>
-      ))}
+      {layoutConfigs.map(({ component: Component, props, colSpan }, index) => {
+        return (
+          <div
+            key={index}
+            className={`${colSpanVariants[colSpan as TColSpan]}`}
+          >
+            <Component {...props} />
+          </div>
+        );
+      })}
     </div>
   );
 };

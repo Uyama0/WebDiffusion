@@ -1,9 +1,11 @@
 import { FC } from "react";
 
 import { setFieldValue } from "@/redux/slices/scratchToImageSlice";
+import { setNestedFieldValue } from "@/redux/slices/scratchToImageSlice";
 
 import { useAppDispatch } from "@/types/reduxHooks";
 import { TSelectInput } from "@/types/componentTypes";
+import { TControlNetArgs, TPromptSchema } from "@/types/modelsTypes";
 
 import {
   Select,
@@ -14,11 +16,26 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const SelectInput: FC<TSelectInput> = ({ label, data, fieldName }) => {
+const SelectInput: FC<TSelectInput> = ({
+  label,
+  data,
+  fieldName,
+  controlNet = false,
+}) => {
   const dispatch = useAppDispatch();
 
   const handleSelectValue = (value: string) => {
-    dispatch(setFieldValue({ field: fieldName, value: value }));
+    const action = controlNet
+      ? setNestedFieldValue({
+          field: fieldName as keyof TControlNetArgs,
+          value: value[0],
+        })
+      : setFieldValue({
+          field: fieldName as keyof TPromptSchema,
+          value: value[0],
+        });
+
+    dispatch(action);
   };
 
   return (

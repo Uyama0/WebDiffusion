@@ -1,4 +1,23 @@
-export interface BaseModelTypes {
+export interface TControlNetArgs {
+  input_image: string;
+  enabled: boolean;
+  module: string;
+  model: string;
+  control_mode: string;
+  weight: number;
+  guidance_start: number;
+  guidance_end: number;
+}
+
+interface ControlNet {
+  args: TControlNetArgs[];
+}
+
+interface AlwaysOnScripts {
+  controlnet: ControlNet;
+}
+
+export interface TPromptSchema {
   prompt: string;
   negative_prompt: string;
   steps: number;
@@ -10,4 +29,5 @@ export interface BaseModelTypes {
   image: string;
   auto: boolean;
   sampler_index: string;
+  alwayson_scripts: AlwaysOnScripts;
 }

@@ -3,11 +3,18 @@ import { FC } from "react";
 import { TPromptSchema } from "./modelsTypes";
 import { TControlNetArgs } from "./modelsTypes";
 
+export type TCheckboxInput = {
+  label: string;
+  data: boolean;
+  controlNet?: boolean;
+  fieldName: keyof TPromptSchema | keyof TControlNetArgs;
+};
+
 export type TSelectInput = {
   label: string;
   data: string[];
   controlNet?: boolean;
-  fieldName: keyof TPromptSchema;
+  fieldName: keyof TPromptSchema | keyof TControlNetArgs;
 };
 
 export type TSliderInput = {
@@ -23,7 +30,7 @@ export type TSliderInput = {
 
 export type TLayoutConfigs = {
   component: FC<any>;
-  props: TSelectInput | TSliderInput;
+  props: TSelectInput | TSliderInput | TCheckboxInput;
   colSpan: number;
 };
 

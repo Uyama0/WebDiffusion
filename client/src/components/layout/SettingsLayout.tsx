@@ -7,6 +7,7 @@ import { TColSpan } from "@/types/componentTypes";
 import { TLayoutConfigs } from "@/types/componentTypes";
 
 import samplingMethods from "@/assets/data/samplingMethods.json";
+import prep from "@/assets/data/preprocessorsControlnet.json";
 
 const layoutConfigs: TLayoutConfigs[] = [
   {

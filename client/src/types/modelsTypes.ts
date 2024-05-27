@@ -1,6 +1,8 @@
 export interface TControlNetArgs {
   input_image: string;
   enabled: boolean;
+  pixel_perfect: boolean;
+  lowvram: boolean;
   module: string;
   model: string;
   control_mode: string;

@@ -26,6 +26,8 @@ const initialState: TPromptSchema = {
         {
           input_image: "controlnet_image_data",
           enabled: true,
+          pixel_perfect: false,
+          lowvram: false,
           module: "canny",
           model: "control_v11p_sd15_canny [d14c016b]",
           control_mode: "ControlNet is more important",

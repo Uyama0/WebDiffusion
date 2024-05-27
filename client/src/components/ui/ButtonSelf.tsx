@@ -7,7 +7,7 @@ import { setFieldValue } from "@/redux/slices/scratchToImageSlice";
 
 import { useAppDispatch } from "@/types/reduxHooks";
 import { useAppSelector } from "@/types/reduxHooks";
-import { BaseModelTypes } from "@/types/modelsTypes";
+import { TPromptSchema } from "@/types/modelsTypes";
 
 const ButtonSelf: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const dispatch = useAppDispatch();
@@ -19,7 +19,7 @@ const ButtonSelf: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     getPostImage();
   };
 
-  const handleToogleSwitch = (fieldName: keyof BaseModelTypes) => {
+  const handleToogleSwitch = (fieldName: keyof TPromptSchema) => {
     dispatch(
       setFieldValue({
         field: fieldName,

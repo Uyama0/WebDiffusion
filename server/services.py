@@ -33,27 +33,10 @@ async def generateImage(ImagePrompt: _schemas._PromptBase) -> Image:
 
     return image
 
-async def imageFromScatch(ScratchPrompt: _schemas.ScratchBase) -> Image:
+async def imageFromScatch(ScratchPrompt: _schemas.PromptSchema) -> Image:
     payload = ScratchPrompt.model_dump()
 
-    del payload["image"]
     del payload["auto"]
-
-    payload["alwayson_scripts"] = {
-        "controlnet": {
-            "args": [
-                {
-                    "input_image": ScratchPrompt.image,
-                    "enabled": True,
-                    "module": "canny",
-                    "model": "control_v11p_sd15_lineart [43d4be0d]",
-                    "control_mode": "Balanced",
-                    "weight": 1,
-                    "pixel_perfect": True,
-                }
-            ]
-        }
-    }
 
     try:
         response = requests.post(url=f'{url}/sdapi/v1/txt2img', json=payload)

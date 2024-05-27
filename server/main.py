@@ -27,7 +27,7 @@ app.add_middleware(
 )
 
 @app.post("/textToImg")
-async def root(ImagePromptCreate: _schemas._PromptBase):
+async def root(ImagePromptCreate: _schemas.PromptSchema):
     image = await _services.generateImage(ImagePrompt = ImagePromptCreate)
 
     memory_stream = io.BytesIO()
@@ -39,8 +39,7 @@ async def root(ImagePromptCreate: _schemas._PromptBase):
     return StreamingResponse(memory_stream, media_type="image/png")
 
 @app.post("/scratchToImg")
-async def generate_image(scratchPromptCreate: _schemas.ScratchBase):
-    print("work")
+async def generate_image(scratchPromptCreate: _schemas.PromptSchema):
     image = await _services.imageFromScatch(ScratchPrompt = scratchPromptCreate)
 
     memory_stream = io.BytesIO()

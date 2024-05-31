@@ -22,7 +22,7 @@ def encode_pil_to_base64(image):
     return base64.b64encode(bytes_data).decode("utf-8")
     
 
-async def generateImage(ImagePrompt: _schemas._PromptBase) -> Image: 
+async def generateImage(ImagePrompt: _schemas.PromptSchema) -> Image: 
     try:
         response = requests.post(url=f'{url}/sdapi/v1/txt2img', json=ImagePrompt.dict())
         response.raise_for_status()
@@ -37,6 +37,8 @@ async def imageFromScatch(ScratchPrompt: _schemas.PromptSchema) -> Image:
     payload = ScratchPrompt.model_dump()
 
     del payload["auto"]
+
+    print(payload)
 
     try:
         response = requests.post(url=f'{url}/sdapi/v1/txt2img', json=payload)

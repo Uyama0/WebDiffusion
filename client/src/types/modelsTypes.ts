@@ -28,7 +28,6 @@ export interface TPromptSchema {
   cfg_scale: number;
   width: number;
   height: number;
-  image: string;
   auto: boolean;
   sampler_index: string;
   alwayson_scripts: AlwaysOnScripts;

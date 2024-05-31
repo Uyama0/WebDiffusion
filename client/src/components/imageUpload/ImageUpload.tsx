@@ -2,12 +2,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "../ui/label";
 
 import { setFieldValue } from "@/redux/slices/scratchToImageSlice";
+import { setNestedFieldValue } from "@/redux/slices/scratchToImageSlice";
 import { useAppDispatch } from "@/types/reduxHooks";
 import { useAppSelector } from "@/types/reduxHooks";
 
 const ImageUpload: React.FC = () => {
   const dispatch = useAppDispatch();
-  const image = useAppSelector((data) => data.settings.image);
+  const image = useAppSelector(
+    (data) => data.settings.alwayson_scripts.controlnet.args[0].input_image
+  );
 
   const handleImageChange = (event: any) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -15,7 +18,9 @@ const ImageUpload: React.FC = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         const base64String = reader.result as string;
-        dispatch(setFieldValue({ field: "image", value: base64String }));
+        dispatch(
+          setNestedFieldValue({ field: "input_image", value: base64String })
+        );
       };
       reader.readAsDataURL(selectedImage);
     }

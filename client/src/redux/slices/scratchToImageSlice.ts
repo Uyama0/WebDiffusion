@@ -17,14 +17,13 @@ const initialState: TPromptSchema = {
   cfg_scale: 7,
   width: 512,
   height: 512,
-  image: "",
   auto: false,
   sampler_index: "",
   alwayson_scripts: {
     controlnet: {
       args: [
         {
-          input_image: "controlnet_image_data",
+          input_image: "",
           enabled: true,
           pixel_perfect: false,
           lowvram: false,

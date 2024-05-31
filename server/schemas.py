@@ -29,6 +29,5 @@ class PromptSchema(BaseModel):
     batch_count: int
     negative_prompt: str
     auto: bool
-    image: str
     sampler_index: str
     alwayson_scripts: AlwaysOnScripts

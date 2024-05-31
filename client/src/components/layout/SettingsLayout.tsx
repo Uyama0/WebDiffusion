@@ -15,7 +15,7 @@ const layoutConfigs: TLayoutConfigs[] = [
     props: {
       label: samplingMethods.label,
       data: samplingMethods.data,
-      fieldName: "sampler_index",
+      fieldName: "sampler_name",
     },
     colSpan: 2,
   },

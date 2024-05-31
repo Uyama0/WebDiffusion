@@ -18,7 +18,7 @@ const initialState: TPromptSchema = {
   width: 512,
   height: 512,
   auto: false,
-  sampler_index: "",
+  sampler_name: "",
   alwayson_scripts: {
     controlnet: {
       args: [

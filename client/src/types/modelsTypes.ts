@@ -29,6 +29,6 @@ export interface TPromptSchema {
   width: number;
   height: number;
   auto: boolean;
-  sampler_index: string;
+  sampler_name: string;
   alwayson_scripts: AlwaysOnScripts;
 }

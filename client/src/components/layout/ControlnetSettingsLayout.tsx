@@ -68,7 +68,7 @@ const layoutConfigs: TLayoutConfigs[] = [
     props: {
       label: modelControlnet.label,
       data: modelControlnet.data,
-      fieldName: "module",
+      fieldName: "model",
     },
     colSpan: 3,
   },

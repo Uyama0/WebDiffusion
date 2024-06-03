@@ -1,6 +1,1 @@
 fastapi[all]
-diffusers==0.10.0
-transformers
-scipy
-ftfy
-accelerate

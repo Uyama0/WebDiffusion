@@ -26,26 +26,35 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.post("/textToImg")
-async def root(ImagePromptCreate: _schemas.PromptSchema):
-    image = await _services.generateImage(ImagePrompt = ImagePromptCreate)
+@app.post("/default")
+async def root(SettingsCreate: _schemas.PromptSchema):
+    image = await _services.generateImage(PromptSchema = SettingsCreate)
 
     memory_stream = io.BytesIO()
 
     image.save(memory_stream, format="PNG")
-    image.save("received_image.png")
     
     memory_stream.seek(0)
     return StreamingResponse(memory_stream, media_type="image/png")
 
-@app.post("/scratchToImg")
-async def generate_image(scratchPromptCreate: _schemas.PromptSchema):
-    image = await _services.imageFromScatch(ScratchPrompt = scratchPromptCreate)
+@app.post("/default/controlnet")
+async def generate_image(SettingsCreate: _schemas.PromptSchema):
+    image = await _services.imageFromScatch(PromptSchema = SettingsCreate)
 
     memory_stream = io.BytesIO()
 
     image.save(memory_stream, format="PNG")
-    image.save("received_image.png")
+    
+    memory_stream.seek(0)
+    return StreamingResponse(memory_stream, media_type="image/png")
+
+@app.post("/auto/controlnet")
+async def generate_image(SettingsCreate: _schemas.PromptSchema):
+    image = await _services.autoControlnetImageGen(PromptSchema = SettingsCreate)
+
+    memory_stream = io.BytesIO()
+
+    image.save(memory_stream, format="PNG")
     
     memory_stream.seek(0)
     return StreamingResponse(memory_stream, media_type="image/png")

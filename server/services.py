@@ -7,45 +7,81 @@ import io
 import base64
 from PIL import Image
 
-url = "http://127.0.0.1:7860"
-
-def decode_base64_to_image(encoding):
-    if encoding.startswith("data:image/"):
-        encoding = encoding.split(";")[1].split(".")[1]
-    image = Image.open(io.BytesIO(base64.b64decode(encoding)))
-    return image
-
-def encode_pil_to_base64(image):
-    with io.BytesIO() as output_bytes:
-        image.save(output_bytes, format="PNG")
-        bytes_data = output_bytes.getvalue()
-    return base64.b64encode(bytes_data).decode("utf-8")
-    
-
-async def generateImage(ImagePrompt: _schemas.PromptSchema) -> Image: 
+def post_request(endpoint: str, payload: dict) -> requests.Response:
     try:
-        response = requests.post(url=f'{url}/sdapi/v1/txt2img', json=ImagePrompt.dict())
+        response = requests.post(url=f'http://127.0.0.1:7860{endpoint}', json=payload).json()
         response.raise_for_status()
+        return response
     except requests.exceptions.RequestException as e:
         raise HTTPException(status_code=500, detail=str(e))
-
-    image: Image = Image.open(io.BytesIO(base64.b64decode(response.json()['images'][0])))
-
-    return image
-
-async def imageFromScatch(ScratchPrompt: _schemas.PromptSchema) -> Image:
-    payload = ScratchPrompt.model_dump()
+    
+async def generateImage(PromptSchema: _schemas.PromptSchema) -> Image: 
+    payload = PromptSchema.model_dump()
 
     del payload["auto"]
 
-    print(payload)
+    override_settings = {
+    "sd_model_checkpoint": "dragonfruitUnisex_dragonfruitgtV10.safetensors [effb60efdb]",
+    }
 
-    try:
-        response = requests.post(url=f'{url}/sdapi/v1/txt2img', json=payload)
-        response.raise_for_status()
-    except requests.exceptions.RequestException as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    payload["override_settings"] = override_settings
 
-    image: Image = Image.open(io.BytesIO(base64.b64decode(response.json()['images'][0])))
+    response = post_request("/sdapi/v1/txt2img", payload)
+
+    image: Image = Image.open(io.BytesIO(base64.b64decode(response['images'][0])))
+
+    return image
+
+async def imageFromScatch(PromptSchema: _schemas.PromptSchema) -> Image:
+    payload = PromptSchema.model_dump()
+
+    del payload["auto"]
+
+    override_settings = {
+    "sd_model_checkpoint": "dragonfruitUnisex_dragonfruitgtV10.safetensors [effb60efdb]",
+    }
+
+    payload["override_settings"] = override_settings
+
+    response = post_request("/sdapi/v1/txt2img", payload)
+
+    image: Image = Image.open(io.BytesIO(base64.b64decode(response['images'][0])))
+
+    return image
+
+async def autoControlnetImageGen(PromptSchema: _schemas.PromptSchema) -> Image:
+    payload = PromptSchema.model_dump()
+
+    input_image = payload["alwayson_scripts"]["controlnet"]["args"][0]["input_image"]
+
+    del payload["auto"]
+
+    override_settings = {
+    "sd_model_checkpoint": "dragonfruitUnisex_dragonfruitgtV10.safetensors [effb60efdb]",
+    }
+
+    payload["override_settings"] = override_settings
+
+    auto_prompt_payload = {
+        "image": input_image,
+        "clip_model_name": "ViT-L-14/openai",
+        "mode": "best"
+    }
+
+    auto_negative_prompt_payload = {
+        "image": input_image,
+        "clip_model_name": "ViT-L-14/openai",
+        "mode": "negative"
+    }
+
+    prompt = post_request("/interrogator/prompt", auto_prompt_payload)
+    # negative_prompt = post_request("/interrogator/prompt", auto_negative_prompt_payload)
+
+    payload["prompt"] = prompt["prompt"]
+    # payload["negative_prompt"] = negative_prompt.json()["prompt"]
+
+    response = post_request("/sdapi/v1/txt2img", payload)
+
+    image: Image = Image.open(io.BytesIO(base64.b64decode(response['images'][0])))
 
     return image

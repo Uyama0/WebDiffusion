@@ -7,24 +7,17 @@ import io
 import base64
 from PIL import Image
 
-def post_request(endpoint: str, payload: dict) -> requests.Response:
+async def post_request(endpoint: str, payload: dict) -> requests.Response:
     try:
-        response = requests.post(url=f'http://127.0.0.1:7860{endpoint}', json=payload).json()
+        response = requests.post(url=f'http://127.0.0.1:7860{endpoint}', json=payload)
         response.raise_for_status()
-        return response
+        return response.json()
     except requests.exceptions.RequestException as e:
         raise HTTPException(status_code=500, detail=str(e))
     
 async def generateImage(PromptSchema: _schemas.PromptSchema) -> Image: 
     payload = PromptSchema.model_dump()
-
     del payload["auto"]
-
-    override_settings = {
-    "sd_model_checkpoint": "dragonfruitUnisex_dragonfruitgtV10.safetensors [effb60efdb]",
-    }
-
-    payload["override_settings"] = override_settings
 
     response = post_request("/sdapi/v1/txt2img", payload)
 
@@ -34,14 +27,7 @@ async def generateImage(PromptSchema: _schemas.PromptSchema) -> Image:
 
 async def imageFromScatch(PromptSchema: _schemas.PromptSchema) -> Image:
     payload = PromptSchema.model_dump()
-
     del payload["auto"]
-
-    override_settings = {
-    "sd_model_checkpoint": "dragonfruitUnisex_dragonfruitgtV10.safetensors [effb60efdb]",
-    }
-
-    payload["override_settings"] = override_settings
 
     response = post_request("/sdapi/v1/txt2img", payload)
 
@@ -55,12 +41,6 @@ async def autoControlnetImageGen(PromptSchema: _schemas.PromptSchema) -> Image:
     input_image = payload["alwayson_scripts"]["controlnet"]["args"][0]["input_image"]
 
     del payload["auto"]
-
-    override_settings = {
-    "sd_model_checkpoint": "dragonfruitUnisex_dragonfruitgtV10.safetensors [effb60efdb]",
-    }
-
-    payload["override_settings"] = override_settings
 
     auto_prompt_payload = {
         "image": input_image,

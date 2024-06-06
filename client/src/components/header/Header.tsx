@@ -1,11 +1,5 @@
-import HeaderTab from "../ui/HeaderTab";
-
 const Header = () => {
-  return (
-    <nav className="flex gap-5">
-      <HeaderTab>scratchToImg</HeaderTab>
-    </nav>
-  );
+  return <nav className="flex gap-5"></nav>;
 };
 
 export default Header;

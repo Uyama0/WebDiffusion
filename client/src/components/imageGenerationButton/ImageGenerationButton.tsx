@@ -1,5 +1,5 @@
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { Button } from "./button";
+import { Button } from "../ui/button";
 import { MagicWandIcon } from "@radix-ui/react-icons";
 
 import useImageGenerate from "@/hooks/useImageGenerate";
@@ -9,7 +9,9 @@ import { useAppDispatch } from "@/types/reduxHooks";
 import { useAppSelector } from "@/types/reduxHooks";
 import { TPromptSchema } from "@/types/modelsTypes";
 
-const ButtonSelf: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const ImageGenerationButton: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const dispatch = useAppDispatch();
   const { getPostImage } = useImageGenerate();
 
@@ -46,4 +48,4 @@ const ButtonSelf: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   );
 };
 
-export default ButtonSelf;
+export default ImageGenerationButton;

@@ -1,5 +1,5 @@
 import InputField from "../inputField/InputField";
-import ButtonSelf from "../ui/ButtonSelf";
+import ImageGenerationButton from "../imageGenerationButton/ImageGenerationButton";
 
 const PromptEntry: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const PromptEntry: React.FC = () => {
         />
       </section>
       <section className="w-1/3">
-        <ButtonSelf>Generate</ButtonSelf>
+        <ImageGenerationButton>Generate</ImageGenerationButton>
       </section>
     </div>
   );

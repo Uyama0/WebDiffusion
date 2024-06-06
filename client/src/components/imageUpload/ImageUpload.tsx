@@ -1,7 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "../ui/label";
 
-import { setFieldValue } from "@/redux/slices/scratchToImageSlice";
 import { setNestedFieldValue } from "@/redux/slices/scratchToImageSlice";
 import { useAppDispatch } from "@/types/reduxHooks";
 import { useAppSelector } from "@/types/reduxHooks";

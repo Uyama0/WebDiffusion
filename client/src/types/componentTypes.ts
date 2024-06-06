@@ -32,6 +32,7 @@ export type TLayoutConfigs = {
   component: FC<any>;
   props: TSelectInput | TSliderInput | TCheckboxInput;
   colSpan: number;
+  url?: string;
 };
 
 export type TColSpan = 1 | 2 | 3 | 4;

@@ -19,6 +19,10 @@ const initialState: TPromptSchema = {
   height: 512,
   auto: false,
   sampler_name: "",
+  override_settings: {
+    sd_model_checkpoint:
+      "dragonfruitUnisex_dragonfruitgtV10.safetensors [effb60efdb]",
+  },
   alwayson_scripts: {
     controlnet: {
       args: [

@@ -19,6 +19,9 @@ class ControlNet(BaseModel):
 class AlwaysOnScripts(BaseModel):
     controlnet: ControlNet
 
+class OverrideSettings(BaseModel):
+    sd_model_checkpoint: str
+
 class PromptSchema(BaseModel):
     prompt: str
     steps: int
@@ -30,4 +33,5 @@ class PromptSchema(BaseModel):
     negative_prompt: str
     auto: bool
     sampler_name: str
+    override_settings: OverrideSettings
     alwayson_scripts: AlwaysOnScripts

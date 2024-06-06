@@ -19,6 +19,10 @@ interface AlwaysOnScripts {
   controlnet: ControlNet;
 }
 
+interface OverrideSettings {
+  sd_model_checkpoint: string;
+}
+
 export interface TPromptSchema {
   prompt: string;
   negative_prompt: string;
@@ -30,5 +34,6 @@ export interface TPromptSchema {
   height: number;
   auto: boolean;
   sampler_name: string;
+  override_settings: OverrideSettings;
   alwayson_scripts: AlwaysOnScripts;
 }

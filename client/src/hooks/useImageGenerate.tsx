@@ -30,9 +30,11 @@ const useImageGenerate = () => {
         body: JSON.stringify(settings),
       });
 
-      const imageBlob = await response.blob();
-      const imageObjectURL = URL.createObjectURL(imageBlob);
-      dispatch(setKeepImage(imageObjectURL));
+      if (response.ok) {
+        const imageBlob = await response.blob();
+        const imageObjectURL = URL.createObjectURL(imageBlob);
+        dispatch(setKeepImage(imageObjectURL));
+      }
     } catch (error) {
       setError(error as Error);
     }

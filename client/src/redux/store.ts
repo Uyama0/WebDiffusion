@@ -1,13 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 
-import scratchToImageSlice from "./slices/scratchToImageSlice";
-import imageKeeperSlice from "./slices/imageKeeperSlice";
+import scratchToImageSlice from './slices/scratchToImageSlice';
+import imageKeeperSlice from './slices/imageKeeperSlice';
 
 const store = configureStore({
-  reducer: {
-    settings: scratchToImageSlice,
-    images: imageKeeperSlice,
-  },
+    reducer: {
+        settings: scratchToImageSlice,
+        images: imageKeeperSlice,
+    },
 });
 
 export default store;

@@ -1,15 +1,15 @@
 {
-  "label": "Sampling method",
-  "data": [
-    "Euler a",
-    "DPM++ 2M Karras",
-    "DPM++ SDE Karras",
-    "DPM++ 2M SDE Exponential",
-    "DPM++ 2M SDE Karras",
-    "Euler",
-    "LMS",
-    "Heun",
-    "DPM2",
-    "DPM2 a"
-  ]
+    "label": "Sampling method",
+    "data": [
+        "Euler a",
+        "DPM++ 2M Karras",
+        "DPM++ SDE Karras",
+        "DPM++ 2M SDE Exponential",
+        "DPM++ 2M SDE Karras",
+        "Euler",
+        "LMS",
+        "Heun",
+        "DPM2",
+        "DPM2 a"
+    ]
 }

@@ -1,11 +1,11 @@
-import ImageViewer from '../ImageViewer/ImageViewer';
-import ImageUpload from '../imageUpload/ImageUpload';
-import SettingsLayout from '../layout/SettingsLayout';
-import ControlnetSettingsLayout from '../layout/ControlnetSettingsLayout';
+import ImageViewer from '@/components/ImageViewer/ImageViewer';
+import ImageUpload from '@/components/imageUpload/ImageUpload';
+import SettingsLayout from '@/components/layout/SettingsLayout';
+import ControlnetSettingsLayout from '@/components/layout/ControlnetSettingsLayout';
 
-import { Separator } from '../ui/separator';
+import { Separator } from '@radix-ui/react-separator';
 
-const ScratchToImage: React.FC = () => {
+export const ImageToImage: React.FC = () => {
     return (
         <div className='flex gap-md'>
             <div className='w-1/2 flex flex-col gap-md'>
@@ -20,5 +20,3 @@ const ScratchToImage: React.FC = () => {
         </div>
     );
 };
-
-export default ScratchToImage;

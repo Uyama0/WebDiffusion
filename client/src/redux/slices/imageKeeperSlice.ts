@@ -1,23 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 interface BaseModelTypes {
-  images: string[];
+    images: string[];
 }
 
 const initialState: BaseModelTypes = {
-  images: [],
+    images: [],
 };
 export const imageKeeperSlice = createSlice({
-  name: "scratchToImage",
-  initialState,
-  reducers: {
-    setKeepImage: (state, action) => {
-      return {
-        ...state,
-        images: [...state.images, action.payload],
-      };
+    name: 'scratchToImage',
+    initialState,
+    reducers: {
+        setKeepImage: (state, action) => {
+            return {
+                ...state,
+                images: [...state.images, action.payload],
+            };
+        },
     },
-  },
 });
 
 export const { setKeepImage } = imageKeeperSlice.actions;

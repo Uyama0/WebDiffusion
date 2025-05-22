@@ -1,16 +1,20 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, Store } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
+import { rtkQueryApi } from './rtkQuery';
 
-import scratchToImageSlice from "./slices/scratchToImageSlice";
-import imageKeeperSlice from "./slices/imageKeeperSlice";
+import { name as settingsStoreName, reducer as settingsReducer } from './slices/settings';
+import { name as imagesStoreName, reducer as imagesReducer } from './slices/images';
 
-const store = configureStore({
-  reducer: {
-    settings: scratchToImageSlice,
-    images: imageKeeperSlice,
-  },
+export const store: Store = configureStore({
+    reducer: {
+        [settingsStoreName]: settingsReducer,
+        [imagesStoreName]: imagesReducer,
+        [rtkQueryApi.reducerPath]: rtkQueryApi.reducer,
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(rtkQueryApi.middleware),
 });
 
-export default store;
+setupListeners(store.dispatch);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

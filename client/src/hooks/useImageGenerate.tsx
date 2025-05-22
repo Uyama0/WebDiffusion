@@ -1,47 +1,51 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { setKeepImage } from "../redux/slices/imageKeeperSlice";
+import { setImage } from '../redux/slices/images';
 
-import { useAppSelector } from "../types/reduxHooks";
-import { useAppDispatch } from "../types/reduxHooks";
+import { useAppSelector } from '../types/reduxHooks';
+import { useAppDispatch } from '../types/reduxHooks';
 
-import determineEndpoint from "@/utils/endpointSwitch";
+import determineEndpoint from '@/utils/endpointSwitch';
+
+import { settingsSelector } from '@/redux/selectors';
 
 const useImageGenerate = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<Error | null>(null);
 
-  const dispatch = useAppDispatch();
-  const settings = useAppSelector((data) => data.settings);
+    const dispatch = useAppDispatch();
+    const settings = useAppSelector(settingsSelector);
 
-  const url = "http://127.0.0.1:8000";
+    console.log(settings);
 
-  const getPostImage = async () => {
-    setIsLoading(true);
+    const url = 'https://t7cgczbg-3000.euw.devtunnels.ms';
 
-    const endpoint = determineEndpoint(settings, url);
+    const getPostImage = async () => {
+        setIsLoading(true);
 
-    try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(settings),
-      });
+        const endpoint = determineEndpoint(settings, url);
 
-      if (response.ok) {
-        const imageBlob = await response.blob();
-        const imageObjectURL = URL.createObjectURL(imageBlob);
-        dispatch(setKeepImage(imageObjectURL));
-      }
-    } catch (error) {
-      setError(error as Error);
-    }
-    setIsLoading(false);
-  };
+        try {
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(settings),
+            });
 
-  return { getPostImage, isLoading, error };
+            if (response.ok) {
+                const imageBlob = await response.blob();
+                const imageObjectURL = URL.createObjectURL(imageBlob);
+                dispatch(setImage(imageObjectURL));
+            }
+        } catch (error) {
+            setError(error as Error);
+        }
+        setIsLoading(false);
+    };
+
+    return { getPostImage, isLoading, error };
 };
 
 export default useImageGenerate;

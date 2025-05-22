@@ -1,62 +1,58 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { Slider } from "../ui/slider";
-import { Label } from "../ui/label";
-import { setFieldValue } from "@/redux/slices/scratchToImageSlice";
-import { setNestedFieldValue } from "@/redux/slices/scratchToImageSlice";
+import { Slider } from '../ui/slider';
+import { Label } from '../ui/label';
+import { setSettings } from '@/redux/slices/settings';
+import { setControlnetArgs } from '@/redux/slices/settings';
 
-import { useAppDispatch } from "@/types/reduxHooks";
-import { useAppSelector } from "@/types/reduxHooks";
-import { TSliderInput } from "@/types/componentTypes";
+import { useAppDispatch } from '@/types/reduxHooks';
+import { useAppSelector } from '@/types/reduxHooks';
+import { TSliderInput } from '@/types/componentTypes';
 
-import { TControlNetArgs, TPromptSchema } from "@/types/modelsTypes";
+import { TControlNetArgs, TPromptSchema } from '@/types/modelsTypes';
+
+import { settingsSelector, controlnetArgsSelector } from '@/redux/selectors';
 
 const SliderInput: FC<TSliderInput> = ({
-  fieldName,
-  fieldLabel,
-  defaultValue = 1,
-  step = 1,
-  max = 100,
-  controlNet = false,
+    fieldName,
+    fieldLabel,
+    defaultValue = 1,
+    step = 1,
+    max = 100,
+    controlNet = false,
 }) => {
-  const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
 
-  const fieldStateValue = useAppSelector((data) => {
-    return controlNet
-      ? data.settings.alwayson_scripts.controlnet.args[0][
-          fieldName as keyof TControlNetArgs
-        ]
-      : data.settings[fieldName as keyof TPromptSchema];
-  });
+    const settings = useAppSelector(settingsSelector);
+    const controlnetArgs = useAppSelector(controlnetArgsSelector);
 
-  const handleSliderValueChange = (value: number[]) => {
-    const action = controlNet
-      ? setNestedFieldValue({
-          field: fieldName as keyof TControlNetArgs,
-          value: value[0],
-        })
-      : setFieldValue({
-          field: fieldName as keyof TPromptSchema,
-          value: value[0],
-        });
+    const fieldStateValue = controlNet
+        ? controlnetArgs[fieldName as keyof TControlNetArgs]
+        : settings[fieldName as keyof TPromptSchema];
 
-    dispatch(action);
-  };
+    const handleSliderValueChange = (value: number[]) => {
+        const action = controlNet
+            ? setControlnetArgs({
+                  key: fieldName as keyof TControlNetArgs,
+                  value: value[0],
+              })
+            : setSettings({
+                  key: fieldName as keyof TPromptSchema,
+                  value: value[0],
+              });
 
-  return (
-    <div className="py-md flex flex-col gap-sm">
-      <div className="flex justify-between items-center">
-        <Label>{fieldLabel}:</Label>
-        <Label>{String(fieldStateValue)}</Label>
-      </div>
-      <Slider
-        defaultValue={[defaultValue]}
-        max={max}
-        step={step}
-        onValueChange={handleSliderValueChange}
-      />
-    </div>
-  );
+        dispatch(action);
+    };
+
+    return (
+        <div className='py-md flex flex-col gap-sm'>
+            <div className='flex justify-between items-center'>
+                <Label>{fieldLabel}:</Label>
+                <Label>{String(fieldStateValue)}</Label>
+            </div>
+            <Slider defaultValue={[defaultValue]} max={max} step={step} onValueChange={handleSliderValueChange} />
+        </div>
+    );
 };
 
 export default SliderInput;

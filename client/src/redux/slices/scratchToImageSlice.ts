@@ -3,11 +3,6 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { TPromptSchema } from "@/types/modelsTypes";
 import { TControlNetArgs } from "@/types/modelsTypes";
 
-type UpdateFieldPayload<T> = {
-  field: keyof T;
-  value: T[keyof T];
-};
-
 const initialState: TPromptSchema = {
   prompt: "",
   negative_prompt: "",

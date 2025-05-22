@@ -4,9 +4,11 @@ import { ImageIcon } from '@radix-ui/react-icons';
 
 import { useAppSelector } from '@/types/reduxHooks';
 
+import { imagesSelector } from '@/redux/selectors/images';
+
 const ImageViewer = () => {
     const [image, setImage] = useState('');
-    const images = useAppSelector((state) => state.images.images);
+    const images = useAppSelector(imagesSelector);
 
     useEffect(() => {
         setImage(images[images.length - 1]);

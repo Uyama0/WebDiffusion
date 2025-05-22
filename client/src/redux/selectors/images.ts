@@ -1,3 +1,3 @@
 import { RootState } from '../store';
 
-// export const settingsSelector = (state: RootState) => state.images;
+export const imagesSelector = (state: RootState): string[] => state.imageStore;

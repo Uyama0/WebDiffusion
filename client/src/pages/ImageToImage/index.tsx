@@ -14,7 +14,9 @@ export const ImageToImage: React.FC = () => {
                 <Separator />
                 <ControlnetSettingsLayout />
             </div>
-            <div className='w-1/2'>{/* <ImageViewer /> */}</div>
+            <div className='w-1/2'>
+                <ImageViewer />
+            </div>
         </div>
     );
 };

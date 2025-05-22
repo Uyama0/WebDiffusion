@@ -1,14 +1,22 @@
-import { type RouteObject } from 'react-router';
+import { RouteObject } from 'react-router';
 
+import { Layout } from '../layout';
 import { ImageToImage } from '@/pages';
 
-import { ROUTES } from '@/constants/routes';
+import { PATHS } from '@/constants/paths';
 
-export const routes: RouteObject[] = [
+const routes: RouteObject[] = [
     {
-        path: ROUTES.MAIN,
-        element: <ImageToImage />,
-        errorElement: <div>error</div>,
-        children: [],
+        element: <Layout />,
+        errorElement: <></>,
+        children: [
+            {
+                path: PATHS.HOME,
+                element: <ImageToImage />,
+                errorElement: <></>,
+            },
+        ],
     },
 ];
+
+export default routes;

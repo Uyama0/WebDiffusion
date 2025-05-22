@@ -3,26 +3,28 @@ import { Button } from '../ui/button';
 import { MagicWandIcon } from '@radix-ui/react-icons';
 
 import useImageGenerate from '@/hooks/useImageGenerate';
-import { setFieldValue } from '@/redux/slices/scratchToImageSlice';
+import { setSettings } from '@/redux/slices/settings';
 
 import { useAppDispatch } from '@/types/reduxHooks';
 import { useAppSelector } from '@/types/reduxHooks';
 import { TPromptSchema } from '@/types/modelsTypes';
 
+import { settingsSelector } from '@/redux/selectors';
+
 const ImageGenerationButton: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const dispatch = useAppDispatch();
     const { getPostImage } = useImageGenerate();
 
-    const auto = useAppSelector((data) => data.settings.auto);
+    const { auto } = useAppSelector(settingsSelector);
 
     const handleButtonClick = () => {
         getPostImage();
     };
 
-    const handleToogleSwitch = (fieldName: keyof TPromptSchema) => {
+    const handleToggleSwitch = (key: keyof TPromptSchema) => {
         dispatch(
-            setFieldValue({
-                field: fieldName,
+            setSettings({
+                key,
                 value: !auto,
             })
         );
@@ -34,7 +36,7 @@ const ImageGenerationButton: React.FC<{ children: React.ReactNode }> = ({ childr
                 {children}
             </Button>
             <ToggleGroup type='single' variant='outline'>
-                <ToggleGroupItem value='auto' aria-label='Toggle switch' onClick={() => handleToogleSwitch('auto')}>
+                <ToggleGroupItem value='auto' aria-label='Toggle switch' onClick={() => handleToggleSwitch('auto')}>
                     <MagicWandIcon className='h-4 w-4' />
                 </ToggleGroupItem>
             </ToggleGroup>

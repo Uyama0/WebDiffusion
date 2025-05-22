@@ -3,11 +3,6 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { TPromptSchema } from '@/types/modelsTypes';
 import { TControlNetArgs } from '@/types/modelsTypes';
 
-type UpdateFieldPayload<T> = {
-    field: keyof T;
-    value: T[keyof T];
-};
-
 const initialState: TPromptSchema = {
     prompt: '',
     negative_prompt: '',
@@ -42,27 +37,29 @@ const initialState: TPromptSchema = {
     },
 };
 
-export const scratchToImageSlice = createSlice({
+export const slice = createSlice({
     name: 'scratchToImage',
     initialState,
     reducers: {
-        setFieldValue: <T extends keyof TPromptSchema>(
+        setSettings: <T extends keyof TPromptSchema>(
             state: TPromptSchema,
-            action: PayloadAction<{ field: T; value: TPromptSchema[T] }>
+            action: PayloadAction<{ key: T; value: TPromptSchema[T] }>
         ) => {
-            const { field, value } = action.payload;
-            state[field] = value;
+            const { key, value } = action.payload;
+            state[key] = value;
         },
-        setNestedFieldValue: <T extends keyof TControlNetArgs>(
+        setControlnetArgs: <T extends keyof TControlNetArgs>(
             state: TPromptSchema,
-            action: PayloadAction<{ field: T; value: TControlNetArgs[T] }>
+            action: PayloadAction<{ key: T; value: TControlNetArgs[T] }>
         ) => {
-            const { field, value } = action.payload;
-            state.alwayson_scripts.controlnet.args[0][field] = value;
+            const { key, value } = action.payload;
+            state.alwayson_scripts.controlnet.args[0][key] = value;
         },
     },
 });
 
-export const { setFieldValue, setNestedFieldValue } = scratchToImageSlice.actions;
-
-export default scratchToImageSlice.reducer;
+export const {
+    name,
+    actions: { setSettings, setControlnetArgs },
+    reducer,
+} = slice;

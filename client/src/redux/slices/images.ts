@@ -7,11 +7,11 @@ interface BaseModelTypes {
 const initialState: BaseModelTypes = {
     images: [],
 };
-export const imageKeeperSlice = createSlice({
-    name: 'scratchToImage',
+export const slice = createSlice({
+    name: 'imageStore',
     initialState,
     reducers: {
-        setKeepImage: (state, action) => {
+        setImage: (state, action) => {
             return {
                 ...state,
                 images: [...state.images, action.payload],
@@ -20,6 +20,8 @@ export const imageKeeperSlice = createSlice({
     },
 });
 
-export const { setKeepImage } = imageKeeperSlice.actions;
-
-export default imageKeeperSlice.reducer;
+export const {
+    name,
+    actions: { setImage },
+    reducer,
+} = slice;

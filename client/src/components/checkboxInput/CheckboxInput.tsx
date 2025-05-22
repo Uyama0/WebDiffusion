@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 
-import { setNestedFieldValue } from '@/redux/slices/scratchToImageSlice';
-import { setFieldValue } from '@/redux/slices/scratchToImageSlice';
+import { setControlnetArgs } from '@/redux/slices/settings';
+import { setSettings } from '@/redux/slices/settings';
 
 import { Checkbox } from '../ui/checkbox';
 import { Label } from '../ui/label';
@@ -20,12 +20,12 @@ const CheckboxInput: FC<TCheckboxInput> = ({ label, data, fieldName, controlNet 
         setIsEnabled(!isEnabled);
 
         const action = controlNet
-            ? setNestedFieldValue({
-                  field: fieldName as keyof TControlNetArgs,
+            ? setControlnetArgs({
+                  key: fieldName as keyof TControlNetArgs,
                   value: isEnabled,
               })
-            : setFieldValue({
-                  field: fieldName as keyof TPromptSchema,
+            : setSettings({
+                  key: fieldName as keyof TPromptSchema,
                   value: isEnabled,
               });
 

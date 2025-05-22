@@ -1,3 +1,1 @@
-import { ImageToImage } from './ImageToImage';
-
-export { ImageToImage };
+export { ImageToImage } from './ImageToImage';

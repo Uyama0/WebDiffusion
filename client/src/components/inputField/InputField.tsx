@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 
 import { Textarea } from '../ui/textarea';
 
-import { setFieldValue } from '../../redux/slices/scratchToImageSlice';
+import { setSettings } from '../../redux/slices/settings';
 import { TPromptSchema } from '../../types/modelsTypes';
 import { useAppDispatch } from '../../types/reduxHooks';
 
@@ -17,7 +17,7 @@ const InputField: React.FC<InputFieldProps> = ({ placeholder, fieldName, autoFoc
     const inputRef = useRef<HTMLTextAreaElement>(null);
 
     const handleChange = (value: string) => {
-        dispatch(setFieldValue({ field: fieldName, value: value }));
+        dispatch(setSettings({ key: fieldName, value: value }));
     };
 
     useEffect(() => {

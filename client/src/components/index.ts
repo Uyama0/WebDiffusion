@@ -10,3 +10,5 @@ export * from './sliderInput';
 export * from './themeProvider';
 export * from './ui';
 export * from './baseSettings';
+export * from './controlnetSettings';
+export * from './footer';

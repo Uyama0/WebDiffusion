@@ -3,7 +3,7 @@ import { BASE_SETTINGS_CONFIG, COL_SPAN_VARIANTS } from './constants';
 
 export const BaseSettings: React.FC = () => {
     return (
-        <div className='grid grid-cols-4 gap-sm'>
+        <div className='grid grid-cols-4 gap-md'>
             {BASE_SETTINGS_CONFIG.map((data, index) => {
                 const { component: Component, colSpan, props } = data;
 

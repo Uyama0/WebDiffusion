@@ -1,14 +1,13 @@
-import { ImageViewer, ImageUpload, BaseSettings } from '@/components';
-import ControlnetSettingsLayout from '@/components/layout/ControlnetSettingsLayout';
+import { ImageViewer, ImageUpload, BaseSettings, ControlnetSettings, Separator } from '@/components';
 
 export const ImageToImage: React.FC = () => {
     return (
-        <div className='flex gap-md mx-sm'>
+        <div className='flex gap-md'>
             <div className='w-1/2 flex flex-col gap-sm'>
                 <ImageUpload />
                 <BaseSettings />
-
-                <ControlnetSettingsLayout />
+                <Separator />
+                <ControlnetSettings />
             </div>
             <div className='w-1/2'>
                 <ImageViewer />

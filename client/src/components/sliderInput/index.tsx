@@ -44,7 +44,7 @@ export const SliderInput: FC<TSliderInput> = ({
     };
 
     return (
-        <div className='py-md flex flex-col gap-sm'>
+        <div className='flex flex-col gap-sm'>
             <div className='flex justify-between items-center'>
                 <Label>{fieldLabel}:</Label>
                 <Label>{String(fieldStateValue)}</Label>

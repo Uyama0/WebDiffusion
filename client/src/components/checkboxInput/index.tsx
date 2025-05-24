@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { setControlnetArgs } from '@/redux/slices/settings';
 import { setSettings } from '@/redux/slices/settings';
 
-import { Checkbox } from '../ui';
-import { Label } from '../ui';
+import { Checkbox, Label } from '@/components';
 
 import { useAppDispatch } from '@/hooks';
 import { TCheckboxInput } from '@/types/componentTypes';

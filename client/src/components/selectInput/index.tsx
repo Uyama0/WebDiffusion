@@ -27,21 +27,19 @@ export const SelectInput: FC<TSelectInput> = ({ label, data, fieldName, controlN
     };
 
     return (
-        <div className='py-md'>
-            <Select onValueChange={handleSelectValue}>
-                <SelectTrigger>
-                    <SelectValue placeholder={label} />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectGroup>
-                        {data.map((dataItem, index) => (
-                            <SelectItem key={index} value={dataItem}>
-                                {dataItem}
-                            </SelectItem>
-                        ))}
-                    </SelectGroup>
-                </SelectContent>
-            </Select>
-        </div>
+        <Select onValueChange={handleSelectValue}>
+            <SelectTrigger>
+                <SelectValue placeholder={label} />
+            </SelectTrigger>
+            <SelectContent>
+                <SelectGroup>
+                    {data.map((dataItem, index) => (
+                        <SelectItem key={index} value={dataItem}>
+                            {dataItem}
+                        </SelectItem>
+                    ))}
+                </SelectGroup>
+            </SelectContent>
+        </Select>
     );
 };

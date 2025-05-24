@@ -1,7 +1,4 @@
-import { FC } from 'react';
-
-import SliderInput from '../sliderInput/SliderInput';
-import SelectInput from '../selectInput/SelectInput';
+import { SliderInput, SelectInput } from '@/components';
 
 import { TColSpan } from '@/types/componentTypes';
 import { TLayoutConfigs } from '@/types/componentTypes';
@@ -87,7 +84,7 @@ const colSpanVariants: { [key in TColSpan]: string } = {
     4: 'col-span-4',
 };
 
-const SettingsLayout: FC = () => {
+const SettingsLayout: React.FC = () => {
     return (
         <div className='grid grid-cols-4 gap-sm'>
             {layoutConfigs.map(({ component: Component, props, colSpan }, index) => {

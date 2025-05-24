@@ -1,8 +1,4 @@
-import { FC } from 'react';
-
-import CheckboxInput from '../checkboxInput/CheckboxInput';
-import SliderInput from '../sliderInput/SliderInput';
-import SelectInput from '../selectInput/SelectInput';
+import { CheckboxInput, SliderInput, SelectInput } from '@/components';
 
 import { TColSpan } from '@/types/componentTypes';
 import { TLayoutConfigs } from '@/types/componentTypes';
@@ -117,7 +113,7 @@ const colSpanVariants: { [key in TColSpan]: string } = {
     4: 'col-span-4',
 };
 
-const ControlnetSettingsLayout: FC = () => {
+const ControlnetSettingsLayout: React.FC = () => {
     return (
         <div>
             <h1>ControlNet:</h1>

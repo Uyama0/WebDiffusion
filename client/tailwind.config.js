@@ -53,19 +53,19 @@ module.exports = {
                 sm: 'calc(var(--radius) - 4px)',
             },
             padding: {
-                lg: 'calc(var(--padding) * 1.5)',
+                lg: 'calc(var(--padding) * 2)',
                 md: 'var(--padding)',
-                sm: 'calc(var(--padding) * 0.5)',
+                sm: 'calc(var(--padding) / 2)',
             },
             margin: {
-                lg: 'calc(var(--margin) * 1.5)',
+                lg: 'calc(var(--margin) * 2)',
                 md: 'var(--margin)',
-                sm: 'calc(var(--margin) * 0.5)',
+                sm: 'calc(var(--margin) / 2)',
             },
             gap: {
-                lg: 'calc(var(--gap) * 1.5)',
+                lg: 'calc(var(--gap) * 2)',
                 md: 'var(--gap)',
-                sm: 'calc(var(--gap) * 0.5)',
+                sm: 'calc(var(--gap) / 2)',
             },
             keyframes: {
                 'accordion-down': {

@@ -2,8 +2,7 @@ import { useState } from 'react';
 
 import { setImage } from '../redux/slices/images';
 
-import { useAppSelector } from '../types/reduxHooks';
-import { useAppDispatch } from '../types/reduxHooks';
+import { useAppSelector, useAppDispatch } from '@/hooks';
 
 import determineEndpoint from '@/utils/endpointSwitch';
 
@@ -15,8 +14,6 @@ const useImageGenerate = () => {
 
     const dispatch = useAppDispatch();
     const settings = useAppSelector(settingsSelector);
-
-    console.log(settings);
 
     const url = 'https://t7cgczbg-3000.euw.devtunnels.ms';
 

@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 
 import { ImageIcon } from '@radix-ui/react-icons';
 
-import { useAppSelector } from '@/types/reduxHooks';
+import { useAppSelector } from '@/hooks';
 
 import { imagesSelector } from '@/redux/selectors/images';
 
-const ImageViewer = () => {
+export const ImageViewer = () => {
     const [image, setImage] = useState('');
     const images = useAppSelector(imagesSelector);
 
@@ -24,5 +24,3 @@ const ImageViewer = () => {
         </section>
     );
 };
-
-export default ImageViewer;

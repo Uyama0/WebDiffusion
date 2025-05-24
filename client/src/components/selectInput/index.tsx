@@ -3,13 +3,13 @@ import { FC } from 'react';
 import { setSettings } from '@/redux/slices/settings';
 import { setControlnetArgs } from '@/redux/slices/settings';
 
-import { useAppDispatch } from '@/types/reduxHooks';
+import { useAppDispatch } from '@/hooks';
 import { TSelectInput } from '@/types/componentTypes';
 import { TControlNetArgs, TPromptSchema } from '@/types/modelsTypes';
 
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui';
 
-const SelectInput: FC<TSelectInput> = ({ label, data, fieldName, controlNet = false }) => {
+export const SelectInput: FC<TSelectInput> = ({ label, data, fieldName, controlNet = false }) => {
     const dispatch = useAppDispatch();
 
     const handleSelectValue = (value: string) => {
@@ -45,5 +45,3 @@ const SelectInput: FC<TSelectInput> = ({ label, data, fieldName, controlNet = fa
         </div>
     );
 };
-
-export default SelectInput;

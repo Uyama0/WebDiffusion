@@ -1,12 +1,15 @@
 import { Outlet } from 'react-router';
 
-import PromptEntry from '@/components/promptEntry/PromptEntry';
+import { ThemeProvider, Header, PromptEntry } from '@/components';
 
 export const Layout: React.FC = () => {
     return (
-        <div>
-            <PromptEntry />
-            <Outlet />
-        </div>
+        <ThemeProvider defaultTheme='dark'>
+            <div className='min-h-screen bg-background px-lg flex flex-col gap-md dark:text-primary outline'>
+                <Header />
+                <PromptEntry />
+                <Outlet />
+            </div>
+        </ThemeProvider>
     );
 };

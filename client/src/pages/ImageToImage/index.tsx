@@ -1,5 +1,4 @@
-import ImageViewer from '@/components/ImageViewer/ImageViewer';
-import ImageUpload from '@/components/imageUpload/ImageUpload';
+import { ImageViewer, ImageUpload } from '@/components';
 import SettingsLayout from '@/components/layout/SettingsLayout';
 import ControlnetSettingsLayout from '@/components/layout/ControlnetSettingsLayout';
 

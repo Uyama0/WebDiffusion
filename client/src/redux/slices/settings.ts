@@ -38,7 +38,7 @@ const initialState: TPromptSchema = {
 };
 
 export const slice = createSlice({
-    name: 'scratchToImage',
+    name: 'settings',
     initialState,
     reducers: {
         setSettings: <T extends keyof TPromptSchema>(

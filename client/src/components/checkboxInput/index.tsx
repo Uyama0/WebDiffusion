@@ -1,17 +1,17 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 
 import { setControlnetArgs } from '@/redux/slices/settings';
 import { setSettings } from '@/redux/slices/settings';
 
-import { Checkbox } from '../ui/checkbox';
-import { Label } from '../ui/label';
+import { Checkbox } from '../ui';
+import { Label } from '../ui';
 
-import { useAppDispatch } from '@/types/reduxHooks';
+import { useAppDispatch } from '@/hooks';
 import { TCheckboxInput } from '@/types/componentTypes';
 import { TControlNetArgs } from '@/types/modelsTypes';
 import { TPromptSchema } from '@/types/modelsTypes';
 
-const CheckboxInput: FC<TCheckboxInput> = ({ label, data, fieldName, controlNet = false }) => {
+export const CheckboxInput: React.FC<TCheckboxInput> = ({ label, data, fieldName, controlNet = false }) => {
     const dispatch = useAppDispatch();
 
     const [isEnabled, setIsEnabled] = useState(data);
@@ -39,5 +39,3 @@ const CheckboxInput: FC<TCheckboxInput> = ({ label, data, fieldName, controlNet 
         </div>
     );
 };
-
-export default CheckboxInput;

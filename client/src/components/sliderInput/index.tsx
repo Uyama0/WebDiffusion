@@ -1,19 +1,18 @@
 import { FC } from 'react';
 
-import { Slider } from '../ui/slider';
-import { Label } from '../ui/label';
+import { Slider } from '../ui';
+import { Label } from '../ui';
 import { setSettings } from '@/redux/slices/settings';
 import { setControlnetArgs } from '@/redux/slices/settings';
 
-import { useAppDispatch } from '@/types/reduxHooks';
-import { useAppSelector } from '@/types/reduxHooks';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import { TSliderInput } from '@/types/componentTypes';
 
 import { TControlNetArgs, TPromptSchema } from '@/types/modelsTypes';
 
 import { settingsSelector, controlnetArgsSelector } from '@/redux/selectors';
 
-const SliderInput: FC<TSliderInput> = ({
+export const SliderInput: FC<TSliderInput> = ({
     fieldName,
     fieldLabel,
     defaultValue = 1,
@@ -54,5 +53,3 @@ const SliderInput: FC<TSliderInput> = ({
         </div>
     );
 };
-
-export default SliderInput;

@@ -5,10 +5,12 @@ import { ThemeProvider, Header, PromptEntry } from '@/components';
 export const Layout: React.FC = () => {
     return (
         <ThemeProvider defaultTheme='dark'>
-            <div className='min-h-screen bg-background px-lg flex flex-col gap-md dark:text-primary outline'>
+            <div className='min-h-screen bg-background flex flex-col dark:text-primary'>
                 <Header />
-                <PromptEntry />
-                <Outlet />
+                <main className='mx-lg border-x border-border'>
+                    <PromptEntry />
+                    <Outlet />
+                </main>
             </div>
         </ThemeProvider>
     );

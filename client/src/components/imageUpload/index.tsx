@@ -24,7 +24,7 @@ export const ImageUpload: React.FC = () => {
     };
 
     return (
-        <section className='border relative rounded-md flex justify-center items-center h-[50vh]'>
+        <section className='border-4 border-border relative rounded-md flex justify-center items-center h-[50vh]'>
             <Input
                 id='picture'
                 type='file'

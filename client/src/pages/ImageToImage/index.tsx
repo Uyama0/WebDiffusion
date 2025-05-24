@@ -1,16 +1,13 @@
-import { ImageViewer, ImageUpload } from '@/components';
-import SettingsLayout from '@/components/layout/SettingsLayout';
+import { ImageViewer, ImageUpload, BaseSettings } from '@/components';
 import ControlnetSettingsLayout from '@/components/layout/ControlnetSettingsLayout';
-
-import { Separator } from '@radix-ui/react-separator';
 
 export const ImageToImage: React.FC = () => {
     return (
-        <div className='flex gap-md'>
-            <div className='w-1/2 flex flex-col gap-md'>
+        <div className='flex gap-md mx-sm'>
+            <div className='w-1/2 flex flex-col gap-sm'>
                 <ImageUpload />
-                <SettingsLayout />
-                <Separator />
+                <BaseSettings />
+
                 <ControlnetSettingsLayout />
             </div>
             <div className='w-1/2'>

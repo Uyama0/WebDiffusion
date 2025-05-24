@@ -14,7 +14,7 @@ export const PromptEntry: React.FC = () => {
     };
 
     return (
-        <section className='flex gap-sm'>
+        <section className='flex gap-sm m-sm'>
             <div className='w-2/3 flex flex-col gap-sm'>
                 <Textarea
                     placeholder='Your prompt here...'

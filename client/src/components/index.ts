@@ -9,3 +9,4 @@ export * from './selectInput';
 export * from './sliderInput';
 export * from './themeProvider';
 export * from './ui';
+export * from './baseSettings';

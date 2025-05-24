@@ -1,16 +1,29 @@
 import { SliderInput, SelectInput } from '@/components';
 
-import { TColSpan } from '@/types/componentTypes';
-import { TLayoutConfigs } from '@/types/componentTypes';
+import { TColSpan, TLayoutConfigs } from '@/types/componentTypes';
 
-import samplingMethods from '@/assets/data/samplingMethods.json';
+export const SAMPLING_METHODS = {
+    label: 'Sampling method',
+    data: [
+        'Euler a',
+        'DPM++ 2M Karras',
+        'DPM++ SDE Karras',
+        'DPM++ 2M SDE Exponential',
+        'DPM++ 2M SDE Karras',
+        'Euler',
+        'LMS',
+        'Heun',
+        'DPM2',
+        'DPM2 a',
+    ],
+};
 
-const layoutConfigs: TLayoutConfigs[] = [
+export const BASE_SETTINGS_CONFIG: TLayoutConfigs[] = [
     {
         component: SelectInput,
         props: {
-            label: samplingMethods.label,
-            data: samplingMethods.data,
+            label: SAMPLING_METHODS.label,
+            data: SAMPLING_METHODS.data,
             fieldName: 'sampler_name',
         },
         colSpan: 2,
@@ -77,25 +90,9 @@ const layoutConfigs: TLayoutConfigs[] = [
     },
 ];
 
-const colSpanVariants: { [key in TColSpan]: string } = {
+export const COL_SPAN_VARIANTS: { [key in TColSpan]: string } = {
     1: 'col-span-1',
     2: 'col-span-2',
     3: 'col-span-3',
     4: 'col-span-4',
 };
-
-const SettingsLayout: React.FC = () => {
-    return (
-        <div className='grid grid-cols-4 gap-sm'>
-            {layoutConfigs.map(({ component: Component, props, colSpan }, index) => {
-                return (
-                    <div key={index} className={`${colSpanVariants[colSpan as TColSpan]}`}>
-                        <Component {...props} />
-                    </div>
-                );
-            })}
-        </div>
-    );
-};
-
-export default SettingsLayout;

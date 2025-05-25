@@ -1,3 +1,3 @@
 export const INVALIDATION_TAGS = {
-    Images: 'Images',
+    Images: 'Txt2Img',
 } as const;

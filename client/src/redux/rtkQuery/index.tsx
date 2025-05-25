@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { generateImage, generateImageClip } from './endpoints';
 import { INVALIDATION_TAGS } from './constants';
 
 export const rtkQueryApi = createApi({
@@ -10,5 +11,8 @@ export const rtkQueryApi = createApi({
         },
     }),
     tagTypes: Object.values(INVALIDATION_TAGS),
-    endpoints: () => ({}),
+    endpoints: (endpointBuilder) => ({
+        generateImage: generateImage(endpointBuilder),
+        generateImageClip: generateImageClip(endpointBuilder),
+    }),
 });

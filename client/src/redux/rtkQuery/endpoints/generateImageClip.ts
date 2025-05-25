@@ -1,10 +1,14 @@
 import { API_URL } from '@/envs';
 import { TEndpointBuilder } from '../types';
 
-const generateImage = (endpointBuilder: TEndpointBuilder) => {
+// interface IGenerateImageClipRequest {}
+
+// interface IGenerateImageClipResponse {}
+
+const generateImageClip = (endpointBuilder: TEndpointBuilder) => {
     return endpointBuilder.mutation<string, any>({
         query: (body) => ({
-            url: `${API_URL}/default`,
+            url: `${API_URL}/auto/controlnet`,
             method: 'POST',
             body,
             credentials: 'include',
@@ -19,4 +23,4 @@ const generateImage = (endpointBuilder: TEndpointBuilder) => {
     });
 };
 
-export default generateImage;
+export default generateImageClip;

@@ -28,7 +28,7 @@ export const PromptEntry: React.FC = () => {
                 />
             </div>
             <div className='w-1/3'>
-                <ImageGenerationButton>Generate</ImageGenerationButton>
+                <ImageGenerationButton />
             </div>
         </section>
     );

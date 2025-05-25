@@ -16,19 +16,23 @@ export const CheckboxInput: React.FC<TCheckboxInput> = ({ label, data, fieldName
     const [isEnabled, setIsEnabled] = useState(data);
 
     const hangleChckboxClick = () => {
-        setIsEnabled(!isEnabled);
+        setIsEnabled((prev) => {
+            const newValue = !prev;
 
-        const action = controlNet
-            ? setControlnetArgs({
-                  key: fieldName as keyof TControlNetArgs,
-                  value: isEnabled,
-              })
-            : setSettings({
-                  key: fieldName as keyof TPromptSchema,
-                  value: isEnabled,
-              });
+            const action = controlNet
+                ? setControlnetArgs({
+                      key: fieldName as keyof TControlNetArgs,
+                      value: newValue,
+                  })
+                : setSettings({
+                      key: fieldName as keyof TPromptSchema,
+                      value: newValue,
+                  });
 
-        dispatch(action);
+            dispatch(action);
+
+            return newValue;
+        });
     };
 
     return (

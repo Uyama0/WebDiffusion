@@ -1,7 +1,6 @@
 import { setSettings } from '@/redux/slices/settings';
 
-import { ImageGenerationButton } from '@/components';
-import { Textarea } from '@/components/ui';
+import { ImageGenerationButton, Textarea } from '@/components';
 
 import { useAppDispatch } from '@/hooks';
 import { TPromptSchema } from '@/types/modelsTypes';
@@ -15,7 +14,7 @@ export const PromptEntry: React.FC = () => {
 
     return (
         <section className='flex gap-sm mb-sm'>
-            <div className='w-2/3 flex flex-col gap-sm'>
+            <div className='w-3/4 flex flex-col gap-sm'>
                 <Textarea
                     placeholder='Your prompt here...'
                     onChange={(e) => handleChange(e.target.value, 'prompt')}
@@ -27,7 +26,7 @@ export const PromptEntry: React.FC = () => {
                     className='resize-none'
                 />
             </div>
-            <div className='w-1/3'>
+            <div className='w-1/4'>
                 <ImageGenerationButton />
             </div>
         </section>

@@ -13,14 +13,16 @@ export const SelectInput: FC<TSelectInput> = ({ label, data, fieldName, controlN
     const dispatch = useAppDispatch();
 
     const handleSelectValue = (value: string) => {
+        console.log(value);
+
         const action = controlNet
             ? setControlnetArgs({
                   key: fieldName as keyof TControlNetArgs,
-                  value: value[0],
+                  value,
               })
             : setSettings({
                   key: fieldName as keyof TPromptSchema,
-                  value: value[0],
+                  value,
               });
 
         dispatch(action);

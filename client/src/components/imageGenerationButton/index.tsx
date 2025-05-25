@@ -2,7 +2,7 @@ import { Loader2, Wand } from 'lucide-react';
 
 import { ToggleGroup, ToggleGroupItem, Button } from '@/components';
 
-import { useAppDispatch, useAppSelector } from '@/hooks';
+import { useAppDispatch, useAppSelector, useToast } from '@/hooks';
 import { TPromptSchema } from '@/types/modelsTypes';
 
 import { settingsSelector, rtkQueryApi } from '@/redux';
@@ -11,13 +11,27 @@ import { setSettings } from '@/redux/slices/settings';
 
 export const ImageGenerationButton: React.FC = () => {
     const dispatch = useAppDispatch();
+    const { toast } = useToast();
 
     const [generateImage, { isLoading }] = rtkQueryApi.useGenerateImageMutation();
 
     const settings = useAppSelector(settingsSelector);
 
     const handleButtonClick = () => {
-        generateImage(settings).then((response) => dispatch(setImage(response)));
+        generateImage(settings)
+            .then((response) => {
+                dispatch(setImage(response));
+                toast({
+                    description: 'Your image has been generated.',
+                });
+            })
+            .catch(() => {
+                toast({
+                    variant: 'destructive',
+                    title: 'Uh oh! Something went wrong.',
+                    description: 'There was a problem with your request.',
+                });
+            });
     };
 
     const handleToggleSwitch = (key: keyof TPromptSchema) => {

@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 
-import { ThemeProvider, Header, PromptEntry, Footer } from '@/components';
+import { ThemeProvider, Header, PromptEntry, Footer, Toaster } from '@/components';
 
 export const Layout: React.FC = () => {
     return (
@@ -12,6 +12,7 @@ export const Layout: React.FC = () => {
                     <Outlet />
                 </main>
                 <Footer />
+                <Toaster />
             </div>
         </ThemeProvider>
     );

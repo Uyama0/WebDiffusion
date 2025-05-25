@@ -17,9 +17,13 @@ export const ImageViewer = () => {
     return (
         <section className='border-4 border-border rounded-md flex justify-center items-center h-[50vh]'>
             {image ? (
-                <img src={image} alt='altimg' className='w-full h-full object-contain rounded-base-border-radius' />
+                <img
+                    src={image}
+                    alt='input image'
+                    className='w-full h-full object-contain rounded-base-border-radius'
+                />
             ) : (
-                <ImageIcon className='h-5 w-5 ' />
+                <ImageIcon className='h-10 w-10 ' />
             )}
         </section>
     );

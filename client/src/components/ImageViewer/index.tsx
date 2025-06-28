@@ -8,8 +8,6 @@ export const ImageViewer = () => {
     const [image, setImage] = useState('');
     const images = useAppSelector(imagesSelector);
 
-    console.log(images);
-
     useEffect(() => {
         setImage(images[images.length - 1]);
         setImage(images?.images[0]);

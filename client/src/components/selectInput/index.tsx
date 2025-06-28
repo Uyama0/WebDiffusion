@@ -13,8 +13,6 @@ export const SelectInput: FC<TSelectInput> = ({ label, data, fieldName, controlN
     const dispatch = useAppDispatch();
 
     const handleSelectValue = (value: string) => {
-        console.log(value);
-
         const action = controlNet
             ? setControlnetArgs({
                   key: fieldName as keyof TControlNetArgs,

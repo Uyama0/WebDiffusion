@@ -8,7 +8,7 @@ const initialState: BaseModelTypes = {
     images: [],
 };
 export const slice = createSlice({
-    name: 'imageStore',
+    name: 'images',
     initialState,
     reducers: {
         setImage: (state, action) => {

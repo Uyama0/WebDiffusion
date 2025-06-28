@@ -1,15 +1,14 @@
 from fastapi import HTTPException
- 
 import schemas as _schemas
-
 import requests
 import io
 import base64
 from PIL import Image
 
-async def post_request(endpoint: str, payload: dict) -> requests.Response:
+
+def post_request(endpoint: str, payload: dict) -> requests.Response:
     try:
-        response = requests.post(url=f'http://127.0.0.1:7860{endpoint}', json=payload)
+        response = requests.post(url=f'https://vjrwl85c-7860.euw.devtunnels.ms{endpoint}', json=payload)
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:
@@ -19,7 +18,7 @@ async def generateImage(PromptSchema: _schemas.PromptSchema) -> Image:
     payload = PromptSchema.model_dump()
     del payload["auto"]
 
-    response = post_request("/sdapi/v1/txt2img", payload)
+    response = await post_request("/sdapi/v1/txt2img", payload)
 
     image: Image = Image.open(io.BytesIO(base64.b64decode(response['images'][0])))
 
@@ -55,10 +54,8 @@ async def autoControlnetImageGen(PromptSchema: _schemas.PromptSchema) -> Image:
     }
 
     prompt = post_request("/interrogator/prompt", auto_prompt_payload)
-    # negative_prompt = post_request("/interrogator/prompt", auto_negative_prompt_payload)
 
     payload["prompt"] = prompt["prompt"]
-    # payload["negative_prompt"] = negative_prompt.json()["prompt"]
 
     response = post_request("/sdapi/v1/txt2img", payload)
 

@@ -3,11 +3,10 @@ import { Loader2, Wand } from 'lucide-react';
 import { ToggleGroup, ToggleGroupItem, Button } from '@/components';
 
 import { useAppDispatch, useAppSelector, useToast } from '@/hooks';
-import { TPromptSchema } from '@/types/modelsTypes';
 
-import { settingsSelector, rtkQueryApi } from '@/redux';
+import { settingsSelector, rtkQueryApi, parametersSelector } from '@/redux';
 import { setImage } from '@/redux/slices/images';
-import { setSettings } from '@/redux/slices/settings';
+import { setAuto } from '@/redux/slices/parameters';
 
 export const ImageGenerationButton: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -16,6 +15,7 @@ export const ImageGenerationButton: React.FC = () => {
     const [generateImage, { isLoading }] = rtkQueryApi.useGenerateImageMutation();
 
     const settings = useAppSelector(settingsSelector);
+    const { auto } = useAppSelector(parametersSelector);
 
     const handleButtonClick = () => {
         generateImage(settings)
@@ -34,13 +34,8 @@ export const ImageGenerationButton: React.FC = () => {
             });
     };
 
-    const handleToggleSwitch = (key: keyof TPromptSchema) => {
-        dispatch(
-            setSettings({
-                key,
-                value: !settings.auto,
-            })
-        );
+    const handleToggleSwitch = () => {
+        dispatch(setAuto(!auto));
     };
 
     return (
@@ -56,7 +51,7 @@ export const ImageGenerationButton: React.FC = () => {
                 </Button>
             )}
             <ToggleGroup type='single' variant='outline'>
-                <ToggleGroupItem value='auto' aria-label='Toggle switch' onClick={() => handleToggleSwitch('auto')}>
+                <ToggleGroupItem value='auto' aria-label='Toggle switch' onClick={() => handleToggleSwitch()}>
                     <Wand className='h-4 w-4' />
                 </ToggleGroupItem>
             </ToggleGroup>

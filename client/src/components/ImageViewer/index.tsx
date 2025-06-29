@@ -5,19 +5,18 @@ import { useAppSelector } from '@/hooks';
 import { imagesSelector } from '@/redux/selectors/images';
 
 export const ImageViewer = () => {
-    const [image, setImage] = useState('');
-    const images = useAppSelector(imagesSelector);
+    const [currImage, setCurrImage] = useState('');
+    const { images } = useAppSelector(imagesSelector);
 
     useEffect(() => {
-        setImage(images[images.length - 1]);
-        setImage(images?.images[0]);
+        setCurrImage(images[images.length - 1]);
     }, [images]);
 
     return (
         <section className='border-4 border-border rounded-md flex justify-center items-center h-[50vh]'>
-            {image ? (
+            {currImage ? (
                 <img
-                    src={images}
+                    src={currImage}
                     alt='input image'
                     className='w-full h-full object-contain rounded-base-border-radius'
                 />

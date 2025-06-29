@@ -19,6 +19,7 @@ export const ImageGenerationButton: React.FC = () => {
 
     const handleButtonClick = () => {
         generateImage(settings)
+            .unwrap()
             .then((response) => {
                 dispatch(setImage(response));
                 toast({

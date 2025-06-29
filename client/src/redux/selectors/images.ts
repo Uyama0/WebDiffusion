@@ -1,3 +1,5 @@
 import { RootState } from '../store';
 
-export const imagesSelector = (state: RootState): string[] => state.images;
+import { IImages } from '../slices/images';
+
+export const imagesSelector = (state: RootState): IImages => state.images;

@@ -11,14 +11,10 @@ STABLE_DIFFUSION_ROUTER: Final = fastapi.APIRouter(prefix="/sdapi")
 
 @STABLE_DIFFUSION_ROUTER.post("/generate_image")
 async def generate_image(settings: SettingsSchema) -> StreamingResponse:
-    print(1)
-
-    return {"message": "Hello World"}
-
-    # try:
-    #     return await _generate_image(settings.model_dump(), "/sdapi/v1/txt2img")
-    # except BaseApiError as e:
-    #     raise HTTPException(status_code=e.status_code, detail=e.message)
+    try:
+        return await _generate_image(settings.model_dump(), "/sdapi/v1/txt2img")
+    except BaseApiError as e:
+        raise HTTPException(status_code=e.status_code, detail=e.message)
 
 @STABLE_DIFFUSION_ROUTER.get("/")
 async def root():

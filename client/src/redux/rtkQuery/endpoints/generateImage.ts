@@ -4,10 +4,9 @@ import { TEndpointBuilder } from '../types';
 const generateImage = (endpointBuilder: TEndpointBuilder) => {
     return endpointBuilder.mutation<string, any>({
         query: (body) => ({
-            url: `${API_URL}/default`,
+            url: `${API_URL}/generate_image`,
             method: 'POST',
             body,
-            credentials: 'include',
             responseHandler: (response) => response.blob(),
         }),
 

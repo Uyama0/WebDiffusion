@@ -11,7 +11,6 @@ const generateImageClip = (endpointBuilder: TEndpointBuilder) => {
             url: `${API_URL}/auto/controlnet`,
             method: 'POST',
             body,
-            credentials: 'include',
             responseHandler: (response) => response.blob(),
         }),
 

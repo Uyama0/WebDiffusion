@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface BaseModelTypes {
+export interface IImages {
     images: string[];
 }
 
-const initialState: BaseModelTypes = {
+const initialState: IImages = {
     images: [],
 };
 export const slice = createSlice({

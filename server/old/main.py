@@ -7,7 +7,6 @@ import services as _services
 
 import io
 
-
 app = FastAPI()
 
 @app.get("/")

@@ -1,10 +1,10 @@
 from fastapi import HTTPException
+from fastapi.responses import StreamingResponse
 import schemas as _schemas
 import requests
 import io
 import base64
 from PIL import Image
-
 
 def post_request(endpoint: str, payload: dict) -> requests.Response:
     try:
@@ -16,7 +16,6 @@ def post_request(endpoint: str, payload: dict) -> requests.Response:
     
 async def generateImage(PromptSchema: _schemas.PromptSchema) -> Image: 
     payload = PromptSchema.model_dump()
-    del payload["auto"]
 
     response = await post_request("/sdapi/v1/txt2img", payload)
 
@@ -26,7 +25,6 @@ async def generateImage(PromptSchema: _schemas.PromptSchema) -> Image:
 
 async def imageFromScatch(PromptSchema: _schemas.PromptSchema) -> Image:
     payload = PromptSchema.model_dump()
-    del payload["auto"]
 
     response = post_request("/sdapi/v1/txt2img", payload)
 
@@ -39,18 +37,10 @@ async def autoControlnetImageGen(PromptSchema: _schemas.PromptSchema) -> Image:
 
     input_image = payload["alwayson_scripts"]["controlnet"]["args"][0]["input_image"]
 
-    del payload["auto"]
-
     auto_prompt_payload = {
         "image": input_image,
         "clip_model_name": "ViT-L-14/openai",
         "mode": "best"
-    }
-
-    auto_negative_prompt_payload = {
-        "image": input_image,
-        "clip_model_name": "ViT-L-14/openai",
-        "mode": "negative"
     }
 
     prompt = post_request("/interrogator/prompt", auto_prompt_payload)

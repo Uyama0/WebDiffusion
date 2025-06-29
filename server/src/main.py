@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
+from .api.stable_diffusion import STABLE_DIFFUSION_ROUTER
 from .core.settings import settings
 
 def make_app() -> FastAPI:
@@ -15,5 +16,7 @@ def make_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    app.include_router(STABLE_DIFFUSION_ROUTER)
 
     return app

@@ -12,3 +12,5 @@ export * from './toggle';
 export * from './separator';
 export * from './toast';
 export * from './toaster';
+export * from './carousel';
+export * from './card';

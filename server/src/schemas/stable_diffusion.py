@@ -31,7 +31,6 @@ class SettingsSchema(BaseModel):
     batch_size: int
     batch_count: int
     negative_prompt: str
-    auto: bool
     sampler_name: str
     override_settings: OverrideSettingsSchema
     alwayson_scripts: AlwaysOnScriptsSchema

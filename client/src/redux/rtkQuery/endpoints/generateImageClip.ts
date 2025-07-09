@@ -1,4 +1,3 @@
-import { API_URL } from '@/envs';
 import { TEndpointBuilder } from '../types';
 
 // interface IGenerateImageClipRequest {}
@@ -8,7 +7,7 @@ import { TEndpointBuilder } from '../types';
 const generateImageClip = (endpointBuilder: TEndpointBuilder) => {
     return endpointBuilder.mutation<string, any>({
         query: (body) => ({
-            url: `${API_URL}/auto/controlnet`,
+            url: `https://t7cgczbg-8005.euw.devtunnels.ms/sdapi/generate_image_auto`,
             method: 'POST',
             body,
             responseHandler: (response) => response.blob(),

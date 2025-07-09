@@ -1,5 +1,16 @@
 # web-diffusion
 
+1. запуска stable diffusion 
+
+- открыть C://AI/stable-diffusion-webui
+- запустить webui-user.bat
+
+2. запуск сервера
+
+- открыть терминал WebDiffusion
+- cd server
+- python -m src.__main__
+
 ## Installation and Running
 
 ### Starting server

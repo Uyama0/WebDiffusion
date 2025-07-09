@@ -13,3 +13,4 @@ export * from './controlnetSettings';
 export * from './footer';
 export * from './navigation';
 export * from './imageDropzone';
+export * from './typography';

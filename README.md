@@ -1,5 +1,7 @@
 # web-diffusion
 
+python -m src.__main__
+
 ## Installation and Running
 
 ### Starting server

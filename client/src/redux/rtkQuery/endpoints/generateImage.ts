@@ -1,4 +1,3 @@
-import { API_URL } from '@/envs';
 import { TEndpointBuilder } from '../types';
 
 const generateImage = (endpointBuilder: TEndpointBuilder) => {

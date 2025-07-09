@@ -1,4 +1,3 @@
-import { API_URL } from '@/envs';
 import { TEndpointBuilder } from '../types';
 
 // interface IGenerateImageClipRequest {}

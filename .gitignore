@@ -27,12 +27,3 @@ dist-ssr
 
 **/__pycache__
 *.py[cod]
-
-# Test files
-
-*.png
-test.py
-
-# Tokens and keys
-
-.env

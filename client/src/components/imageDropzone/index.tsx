@@ -77,7 +77,7 @@ export const ImageDropZone: React.FC<IImageDropZone> = ({
     }, []);
 
     const handleDrop = useCallback(
-        (e: any) => {
+        (e: React.DragEvent<HTMLDivElement>) => {
             e.preventDefault();
             setIsDragOver(false);
 

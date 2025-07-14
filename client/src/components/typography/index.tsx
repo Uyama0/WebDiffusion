@@ -30,10 +30,6 @@ export const P: React.FC<ITypography> = ({ children, classname }) => {
     return <p className={cn('leading-7 [&:not(:first-child)]:mt-6', classname)}>{children}</p>;
 };
 
-export const LargeText: React.FC<ITypography> = ({ children, classname }) => {
-    return <div className={cn('text-lg font-semibold', classname)}>{children}</div>;
-};
-
 export const List: React.FC<ITypography> = ({ children, classname }) => {
     return <ul className={cn('my-6 ml-6 list-disc [&>li]:mt-2', classname)}>{children}</ul>;
 };
@@ -44,4 +40,8 @@ export const Large: React.FC<ITypography> = ({ children, classname }) => {
 
 export const Blockquote: React.FC<ITypography> = ({ children, classname }) => {
     return <blockquote className={cn('mt-6 border-l-2 pl-6 italic', classname)}>{children}</blockquote>;
+};
+
+export const Muted: React.FC<ITypography> = ({ children, classname }) => {
+    return <p className={cn('text-muted-foreground text-sm', classname)}>{children}</p>;
 };

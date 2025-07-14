@@ -1,5 +1,5 @@
 import { GitHubLogoIcon } from '@radix-ui/react-icons';
-import { ModeToggle, Button, Navigation } from '@/components';
+import { ModeToggle, Button, Navigation, Large } from '@/components';
 
 export const Header: React.FC = () => {
     const handleGithubClick = () => {
@@ -9,11 +9,11 @@ export const Header: React.FC = () => {
     return (
         <div className='px-lg border-b border-border'>
             <header className='flex py-sm px-sm items-center justify-between border-x border-border relative'>
-                <span className='text-lg font-bold'>NeuroSketch</span>
+                <Large classname='tracking-wide text-2xl'>NeuroSketch</Large>
                 <Navigation />
                 <div className='flex gap-sm'>
-                    <Button variant='outline' size='icon'>
-                        <GitHubLogoIcon onClick={handleGithubClick} />
+                    <Button variant='outline' size='icon' onClick={handleGithubClick}>
+                        <GitHubLogoIcon />
                     </Button>
                     <ModeToggle />
                 </div>

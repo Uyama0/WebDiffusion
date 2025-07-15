@@ -10,6 +10,10 @@ from src.core.client import ApiClient, sd_client
 
 STABLE_DIFFUSION_ROUTER: Final = fastapi.APIRouter(prefix="/sdapi")
 
+@STABLE_DIFFUSION_ROUTER.get("/host")
+async def host():
+    return 1
+
 @STABLE_DIFFUSION_ROUTER.post("/generate_image")
 async def generate_image(settings: SettingsSchema, client: ApiClient = Depends(sd_client)) -> StreamingResponse:
     try:

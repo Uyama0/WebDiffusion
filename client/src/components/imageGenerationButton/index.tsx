@@ -19,7 +19,7 @@ export const ImageGenerationButton: React.FC = () => {
     const { auto } = useAppSelector(parametersSelector);
 
     const handleButtonClick = () => {
-        if (auto) {
+        if (!auto) {
             generateImage(settings)
             .unwrap()
             .then((response) => {

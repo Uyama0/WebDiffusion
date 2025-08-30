@@ -21,38 +21,37 @@ export const ImageGenerationButton: React.FC = () => {
     const handleButtonClick = () => {
         if (!auto) {
             generateImage(settings)
-            .unwrap()
-            .then((response) => {
-                dispatch(setImage(response));
-                toast({
-                    description: 'Изображение сгенерированно.',
+                .unwrap()
+                .then((response) => {
+                    dispatch(setImage(response));
+                    toast({
+                        description: 'Изображение сгенерированно.',
+                    });
+                })
+                .catch(() => {
+                    toast({
+                        variant: 'destructive',
+                        title: 'Что-то пошло не так.',
+                        description: 'Проблема с запросом.',
+                    });
                 });
-            })
-            .catch(() => {
-                toast({
-                    variant: 'destructive',
-                    title: 'Что-то пошло не так.',
-                    description: 'Проблема с запросом.',
-                });
-            });
         } else {
             generateImageClip(settings)
-            .unwrap()
-            .then((response) => {
-                dispatch(setImage(response));
-                toast({
-                    description: 'Your image has been generated.',
+                .unwrap()
+                .then((response) => {
+                    dispatch(setImage(response));
+                    toast({
+                        description: 'Your image has been generated.',
+                    });
+                })
+                .catch(() => {
+                    toast({
+                        variant: 'destructive',
+                        title: 'Uh oh! Something went wrong.',
+                        description: 'There was a problem with your request.',
+                    });
                 });
-            })
-            .catch(() => {
-                toast({
-                    variant: 'destructive',
-                    title: 'Uh oh! Something went wrong.',
-                    description: 'There was a problem with your request.',
-                });
-            });
         }
-        
     };
 
     const handleToggleSwitch = () => {
@@ -61,7 +60,7 @@ export const ImageGenerationButton: React.FC = () => {
 
     return (
         <div className='flex flex-col h-full gap-sm'>
-            {(generateImageLoading || generateImageClipLoading) ? (
+            {generateImageLoading || generateImageClipLoading ? (
                 <Button disabled className='grow'>
                     <Loader2 className='animate-spin' />
                     Подождите

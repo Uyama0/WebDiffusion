@@ -1,4 +1,4 @@
-import { H3, P, List, Blockquote, Button } from '@/components';
+import { H3, P, List } from '@/components';
 
 import moana1 from '@/assets/moana1.jpg';
 import moana2 from '@/assets/moana2.png';
@@ -9,7 +9,6 @@ import old2 from '@/assets/old2.png';
 import nature1 from '@/assets/nature1.jpg';
 import nature2 from '@/assets/nature3.png';
 
-import { Link } from 'react-router';
 import styles from './styles.module.css';
 
 export const About: React.FC = () => {

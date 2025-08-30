@@ -13,10 +13,10 @@ export const Navigation: React.FC = () => {
     return (
         <nav className='absolute left-1/2 transform -translate-x-1/2 flex gap-sm'>
             <Button variant='ghost' onClick={() => handleNavigate(PATHS.HOME)}>
-                Веб-сервис
+                О проекте
             </Button>
             <Button variant='ghost' onClick={() => handleNavigate(PATHS.ABOUT)}>
-                О проекте
+                Веб-сервис
             </Button>
         </nav>
     );

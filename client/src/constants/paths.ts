@@ -1,4 +1,4 @@
 export enum PATHS {
     HOME = '/',
-    ABOUT = '/service',
+    SERVICE = '/service',
 }

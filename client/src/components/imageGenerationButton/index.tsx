@@ -12,13 +12,15 @@ export const ImageGenerationButton: React.FC = () => {
     const dispatch = useAppDispatch();
     const { toast } = useToast();
 
-    const [generateImage, { isLoading }] = rtkQueryApi.useGenerateImageMutation();
+    const [generateImage, { isLoading: generateImageLoading }] = rtkQueryApi.useGenerateImageMutation();
+    const [generateImageClip, { isLoading: generateImageClipLoading }] = rtkQueryApi.useGenerateImageClipMutation();
 
     const settings = useAppSelector(settingsSelector);
     const { auto } = useAppSelector(parametersSelector);
 
     const handleButtonClick = () => {
-        generateImage(settings)
+        if (!auto) {
+            generateImage(settings)
             .unwrap()
             .then((response) => {
                 dispatch(setImage(response));
@@ -33,6 +35,24 @@ export const ImageGenerationButton: React.FC = () => {
                     description: 'Проблема с запросом.',
                 });
             });
+        } else {
+            generateImageClip(settings)
+            .unwrap()
+            .then((response) => {
+                dispatch(setImage(response));
+                toast({
+                    description: 'Your image has been generated.',
+                });
+            })
+            .catch(() => {
+                toast({
+                    variant: 'destructive',
+                    title: 'Uh oh! Something went wrong.',
+                    description: 'There was a problem with your request.',
+                });
+            });
+        }
+        
     };
 
     const handleToggleSwitch = () => {
@@ -41,7 +61,7 @@ export const ImageGenerationButton: React.FC = () => {
 
     return (
         <div className='flex flex-col h-full gap-sm'>
-            {isLoading ? (
+            {(generateImageLoading || generateImageClipLoading) ? (
                 <Button disabled className='grow'>
                     <Loader2 className='animate-spin' />
                     Подождите

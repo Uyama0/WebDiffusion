@@ -12,12 +12,12 @@ const routes: RouteObject[] = [
         children: [
             {
                 path: PATHS.HOME,
-                element: <ImageToImage />,
+                element: <About />,
                 errorElement: <></>,
             },
             {
                 path: PATHS.ABOUT,
-                element: <About />,
+                element: <ImageToImage />,
                 errorElement: <></>,
             },
         ],

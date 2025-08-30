@@ -3,7 +3,7 @@ import { SliderInput, SelectInput } from '@/components';
 import { TColSpan, TLayoutConfigs } from '@/types/componentTypes';
 
 export const SAMPLING_METHODS = {
-    label: 'Sampling method',
+    label: 'Метод генерации',
     data: [
         'Euler a',
         'DPM++ 2M Karras',
@@ -32,7 +32,7 @@ export const BASE_SETTINGS_CONFIG: TLayoutConfigs[] = [
         component: SliderInput,
         props: {
             fieldName: 'steps',
-            fieldLabel: 'Sampling steps',
+            fieldLabel: 'Шагов генерации',
             defaultValue: 20,
             max: 150,
         },
@@ -42,7 +42,7 @@ export const BASE_SETTINGS_CONFIG: TLayoutConfigs[] = [
         component: SliderInput,
         props: {
             fieldName: 'width',
-            fieldLabel: 'Width',
+            fieldLabel: 'Ширина',
             defaultValue: 512,
             max: 2048,
         },
@@ -52,7 +52,7 @@ export const BASE_SETTINGS_CONFIG: TLayoutConfigs[] = [
         component: SliderInput,
         props: {
             fieldName: 'batch_count',
-            fieldLabel: 'Batch count',
+            fieldLabel: 'Кол-во вхождений',
             defaultValue: 1,
         },
         colSpan: 1,
@@ -61,7 +61,7 @@ export const BASE_SETTINGS_CONFIG: TLayoutConfigs[] = [
         component: SliderInput,
         props: {
             fieldName: 'height',
-            fieldLabel: 'Height',
+            fieldLabel: 'Высота',
             defaultValue: 512,
             max: 2048,
         },
@@ -71,7 +71,7 @@ export const BASE_SETTINGS_CONFIG: TLayoutConfigs[] = [
         component: SliderInput,
         props: {
             fieldName: 'batch_size',
-            fieldLabel: 'Batch size',
+            fieldLabel: 'Кол-во изображений',
             defaultValue: 1,
             max: 100,
         },
@@ -81,7 +81,7 @@ export const BASE_SETTINGS_CONFIG: TLayoutConfigs[] = [
         component: SliderInput,
         props: {
             fieldName: 'cfg_scale',
-            fieldLabel: 'CFG scale',
+            fieldLabel: 'Коэффициент соответствия промпту',
             defaultValue: 7,
             max: 30,
             step: 0.5,

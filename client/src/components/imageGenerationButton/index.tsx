@@ -23,14 +23,14 @@ export const ImageGenerationButton: React.FC = () => {
             .then((response) => {
                 dispatch(setImage(response));
                 toast({
-                    description: 'Your image has been generated.',
+                    description: 'Изображение сгенерированно.',
                 });
             })
             .catch(() => {
                 toast({
                     variant: 'destructive',
-                    title: 'Uh oh! Something went wrong.',
-                    description: 'There was a problem with your request.',
+                    title: 'Что-то пошло не так.',
+                    description: 'Проблема с запросом.',
                 });
             });
     };
@@ -44,11 +44,11 @@ export const ImageGenerationButton: React.FC = () => {
             {isLoading ? (
                 <Button disabled className='grow'>
                     <Loader2 className='animate-spin' />
-                    Please wait
+                    Подождите
                 </Button>
             ) : (
                 <Button onClick={handleButtonClick} className='grow'>
-                    Generate
+                    Сгенерировать
                 </Button>
             )}
             <ToggleGroup type='single' variant='outline'>

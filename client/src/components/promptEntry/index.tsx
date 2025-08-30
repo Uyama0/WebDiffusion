@@ -16,12 +16,12 @@ export const PromptEntry: React.FC = () => {
         <section className='flex gap-sm mb-sm'>
             <div className='w-3/4 flex flex-col gap-sm'>
                 <Textarea
-                    placeholder='Your prompt here...'
+                    placeholder='Ваш промпт...'
                     onChange={(e) => handleChange(e.target.value, 'prompt')}
                     className='resize-none'
                 />
                 <Textarea
-                    placeholder='Your negative prompt here...'
+                    placeholder='Ваш отрицательный промпт...'
                     onChange={(e) => handleChange(e.target.value, 'negative_prompt')}
                     className='resize-none'
                 />

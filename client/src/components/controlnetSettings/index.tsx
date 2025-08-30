@@ -6,7 +6,7 @@ import { TColSpan } from '@/types/componentTypes';
 export const ControlnetSettings: React.FC = () => {
     return (
         <>
-            <div className='grid grid-cols-4'>
+            <div className='flex justify-between'>
                 {CONTROLNET_TOGGLE_SETTINGS.map((data, index) => {
                     const { component: Component, colSpan, props } = data;
                     return (

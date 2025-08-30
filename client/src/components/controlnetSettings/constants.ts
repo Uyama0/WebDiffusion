@@ -3,7 +3,7 @@ import { TLayoutConfigs } from '@/types/componentTypes';
 import { CheckboxInput, SelectInput, SliderInput } from '@/components';
 
 const PREPROCESSOR_METHODS = {
-    label: 'Preprocessor',
+    label: 'Препроцессор',
     data: [
         'none',
         'canny',
@@ -75,7 +75,7 @@ const PREPROCESSOR_METHODS = {
 };
 
 const CONTROLNET_MODELS = {
-    label: 'Model',
+    label: 'Модель',
     data: [
         'control_canny-fp16 [e3fe7712]',
         'control_depth-fp16 [400750f6]',
@@ -93,7 +93,7 @@ export const CONTROLNET_TOGGLE_SETTINGS: TLayoutConfigs[] = [
     {
         component: CheckboxInput,
         props: {
-            label: 'Enabled',
+            label: 'Использовать расшерение',
             data: true,
             fieldName: 'enabled',
             controlNet: true,
@@ -103,8 +103,8 @@ export const CONTROLNET_TOGGLE_SETTINGS: TLayoutConfigs[] = [
     {
         component: CheckboxInput,
         props: {
-            label: 'Pixel perfect',
-            data: false,
+            label: 'Соблюдать контуры',
+            data: true,
             fieldName: 'pixel_perfect',
             controlNet: true,
         },
@@ -113,7 +113,7 @@ export const CONTROLNET_TOGGLE_SETTINGS: TLayoutConfigs[] = [
     {
         component: CheckboxInput,
         props: {
-            label: 'Low VRAM',
+            label: 'Низкий VRAM',
             data: false,
             fieldName: 'lowvram',
             controlNet: true,
@@ -147,7 +147,7 @@ export const CONTROLNET_PARAMETER_SETTINGS: TLayoutConfigs[] = [
         component: SliderInput,
         props: {
             fieldName: 'weight',
-            fieldLabel: 'Control weight',
+            fieldLabel: 'Контрольная масса',
             defaultValue: 1,
             max: 3,
             step: 1,
@@ -159,7 +159,7 @@ export const CONTROLNET_PARAMETER_SETTINGS: TLayoutConfigs[] = [
         component: SliderInput,
         props: {
             fieldName: 'guidance_start',
-            fieldLabel: 'Starting Control Step',
+            fieldLabel: 'Начальный шаг контроля',
             defaultValue: 0,
             max: 1,
             step: 0.01,
@@ -171,7 +171,7 @@ export const CONTROLNET_PARAMETER_SETTINGS: TLayoutConfigs[] = [
         component: SliderInput,
         props: {
             fieldName: 'guidance_end',
-            fieldLabel: 'Ending Control Step',
+            fieldLabel: 'Конечный шаг контроля',
             defaultValue: 1,
             max: 1,
             step: 0.01,
